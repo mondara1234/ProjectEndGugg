@@ -1,4 +1,10 @@
+import React from 'react';
 import { AppRegistry } from 'react-native';
-import App from './App';
+import { nameProject as AppGugg } from './app.json';
+import App from './src/app';
 
-AppRegistry.registerComponent('ProjectEndGugg', () => App);
+const ProjectEnd = () => <App />;
+
+export default ProjectEnd;
+
+AppRegistry.registerComponent(AppGugg, () => ProjectEnd);
