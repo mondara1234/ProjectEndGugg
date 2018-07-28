@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Content, Header, Left, Body, Right, Button, Icon, Title, Thumbnail, Item, Input, Text} from 'native-base';
 import {View,TouchableHighlight} from 'react-native';
 
 
-class DashboardScreen extends Component {
+class DashboardScreen extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {text: ''};
