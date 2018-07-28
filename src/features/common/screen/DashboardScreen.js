@@ -3,7 +3,7 @@ import { Container, Content, Header, Left, Body, Right, Button, Icon, Title, Thu
 import {View,TouchableHighlight} from 'react-native';
 
 
-class DashboardScreen extends React.PureComponent {
+class DashboardScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {text: ''};

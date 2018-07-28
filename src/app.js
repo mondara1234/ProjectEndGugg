@@ -8,6 +8,7 @@ import getTheme from '../native-base-theme/components';
 import AllReducer from "../components/reducers/index";
 import {createStore} from "redux";
 export  const store = createStore(AllReducer);
+
 class App extends React.PureComponent{
     render() {
         return (
