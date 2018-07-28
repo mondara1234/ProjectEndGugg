@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import { StyleProvider, Root } from 'native-base';
-import ThemeVariables from '_theme';
+import ThemeVariables from '../native-base-theme/variables/platform';
 import RootNavigation from './common/rootNavigation';
 import getTheme from '../native-base-theme/components';
 import AllReducer from "../components/reducers/index";
