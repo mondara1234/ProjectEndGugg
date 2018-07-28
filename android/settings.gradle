@@ -1,0 +1,3 @@
+rootProject.name = 'ProjectEndGugg'
+
+include ':app'
