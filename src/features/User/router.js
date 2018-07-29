@@ -14,25 +14,22 @@ export const UserRouter = {
     [LOGIN]: {
         screen: LoginScreen,
         navigationOptions: ({navigation}) => ({
-            drawerLockMode: 'locked-closed'
+           drawerLockMode: 'locked-closed'
         })
     },
     [REGISTRATION]: {
         screen: RegistrationScreen,
         navigationOptions: ({navigation}) => ({
-            drawerLockMode: 'locked-closed'
         })
     },
     [SHOWLIST]: {
         screen: ShowListActivityScreen,
         navigationOptions: ({navigation}) => ({
-            drawerLockMode: 'locked-closed'
         })
     },
     [EDITDATA]: {
         screen: EditDataScreen,
         navigationOptions: ({navigation}) => ({
-            drawerLockMode: 'locked-closed'
         })
     },
 };

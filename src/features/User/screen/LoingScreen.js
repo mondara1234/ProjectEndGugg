@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet, Alert, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import Logo from '../components/Logo';
 
-export default class LoingScreen extends Component {
+class LoingScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,7 +29,7 @@ export default class LoingScreen extends Component {
             .then((responseJson) => {
                 if(responseJson === 'Data Matched')
                 {
-                    this.props.navigation.navigate( DASHBOARD )
+                    this.props.navigation.navigate('DASHBOARD' );
                 }
                 else{
                     Alert.alert(responseJson);
@@ -40,7 +40,7 @@ export default class LoingScreen extends Component {
     }
 
       RegistrationFunction = () =>{
-        this.props.navigation.navigate( REGISTRATION );
+        this.props.navigation.navigate( 'REGISTRATION');
     }
 
     render() {
@@ -78,6 +78,11 @@ export default class LoingScreen extends Component {
         )
     }
 }
+
+LoingScreen.navigationOptions  = ({navigation}) => ({
+    header: null
+});
+
 const styles = StyleSheet.create({
     container : {
         paddingTop:60,
@@ -131,3 +136,5 @@ const styles = StyleSheet.create({
         textAlign:'center'
     }
 });
+
+export default LoingScreen;

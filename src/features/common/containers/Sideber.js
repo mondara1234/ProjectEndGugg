@@ -1,55 +1,68 @@
-import PropTypes from 'prop-types';
+
 import React from 'react';
-import styles from './SideMenu.style';
 import {NavigationActions} from 'react-navigation';
 import { styles as s } from 'react-native-style-tachyons';
 import { Container, Content, H3,ListItem, Left, Thumbnail, Right, Body } from 'native-base';
 import { Alert, TouchableOpacity, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from './SideMenu.style';
 import { DASHBOARD } from '../router';
 
 class Sideber extends React.Component {
     constructor(props) {
         super(props);
     }
+
     navigateToScreen = (route) => () => {
         const navigateAction = NavigationActions.navigate({
             routeName: route
         });
         this.props.navigation.dispatch(navigateAction);
     }
+
     render () {
         return (
             <Container>
                 <Content>
-                    <View style={styles.container}>
-                        <View style={[s.flx_i, s.jcc, s.aic, s.pt4, s.pb2]}>
-                            <ListItem thumbnail
-                                      style={styles.listCompany}>
-                                <Thumbnail
-                                    square
-                                    source={require('../../../../pulic/assets/images/logo1.png')}
-                                    style={{ width: 30, height: 30, margin: 5}}
-                                />
-                                <H3 style={{fontSize: 16, color: '#020202', marginBottom: 10}}> {'Company'} </H3>
-                            </ListItem>
-                            <ListItem thumbnail>
-                                    <Left>
-                                        <Thumbnail
-                                            source={{uri: 'https://www.rendimento.com.br/wp-content/uploads/2017/12/depoimento-3.png'}}
-                                            style={{ width: 60, height: 60, margin: 5}}
-                                        />
-                                    </Left>
-                                    <Right>
-                                        <Text style={{ fontSize: 14, color: '#7a7a7a',}}> {'first_name'} {'last_name'}</Text>
-                                        <Text style={{ fontSize: 14, color: '#7a7a7a',}}> {'กำลังใช้งาน'} </Text>
-                                    </Right>
-                            </ListItem>
+                    <TouchableOpacity
+                        style={styles.listCompany}
+                        disabled={true}
+                    >
+                        <View style={styles.viewCompany}>
+                            <Thumbnail
+                                square
+                                source={require('../../../../pulic/assets/images/logo1.png')}
+                                style={styles.styleLogo}
+                            />
+                            <H3 style={styles.styleH3}> {'Company'} </H3>
                         </View>
-                        <TouchableOpacity style={styles.managerView}>
-                            <Icon style={styles.managerIcon} name="user" size={33} color={'white'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity disabled={true}>
+                        <View style={styles.viewCompany}>
+                            <Left>
+                                <Thumbnail
+                                    source={{uri: 'https://www.atomix.com.au/media/2015/06/atomix_user31.png'}}
+                                    style={styles.styleImage}
+                                />
+                            </Left>
+                            <Right>
+                                <Text style={styles.styleUser}> {'first_name'}   {'last_name'} </Text>
+                                <Text style={styles.styleUser}> {'กำลังใช้งาน'} </Text>
+                            </Right>
+                        </View>
+                    </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.managerView}
+                            disabled={true}
+                        >
+                            <Icon
+                                style={styles.managerIcon}
+                                name="user"
+                                size={33} c
+                                olor={'white'}
+                            />
                             <View style={s.ml3}>
-                                <Text style={{fontSize: 16, color: '#020202', marginLeft: 10}}> {'เมนู'} </Text>
+                                <Text style={styles.styleMune}> {'เมนู'} </Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -59,7 +72,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="home" />
-                            <Text> {'หน้าหลัก'} </Text>
+                            <Text style={styles.styleNameicon}> {'หน้าหลัก'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -68,7 +81,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="user" />
-                            <Text> {'User'} </Text>
+                            <Text style={styles.styleNameicon}> {'User'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -77,7 +90,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="envelope" />
-                            <Text> {'กล่องข้อความ'} </Text>
+                            <Text style={styles.styleNameicon}> {'กล่องข้อความ'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -86,7 +99,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="list" />
-                            <Text> {'List'} </Text>
+                            <Text style={styles.styleNameicon}> {'List'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -95,7 +108,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="location-arrow" />
-                            <Text> {'Map'} </Text>
+                            <Text style={styles.styleNameicon}> {'Map'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -104,7 +117,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="calendar" />
-                            <Text> {'เวลา'} </Text>
+                            <Text style={styles.styleNameicon}> {'เวลา'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -113,7 +126,7 @@ class Sideber extends React.Component {
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="qrcode" />
-                            <Text> {'QR Code'} </Text>
+                            <Text style={styles.styleNameicon}> {'QR Code'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -129,12 +142,11 @@ class Sideber extends React.Component {
                             }
                         >
                             <Icon style={styles.listItemIcon} name="sign-out" />
-                            <Text> {'ออกจากระบบ'} </Text>
+                            <Text style={styles.styleNameicon}> {'ออกจากระบบ'} </Text>
                         </TouchableOpacity>
-                    </View>
                 </Content>
                 <View style={styles.footerContainer}>
-                    <Text>{'ติดต่อกับเรา'}</Text>
+                    <Text> {'ติดต่อกับเรา'} </Text>
                 </View>
             </Container>
         );

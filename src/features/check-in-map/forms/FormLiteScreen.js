@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet, FlatList,ActivityIndicator} from 'react-native';
-import { Button, Item, Input, Icon, List,H3,ListItem, Left, Thumbnail, Body  } from 'native-base';
-import  CommonText from '../../common/components/CommonText';
+import { Button, Item, Input, Icon, H3, ListItem, Left, Thumbnail, Body  } from 'native-base';
 
 class FormLiteScreen extends React.PureComponent {
     constructor (props) {
@@ -60,7 +59,7 @@ class FormLiteScreen extends React.PureComponent {
                 </View> :
             <View style={styles.container}>
                 <View style={styles.viewlocation}>
-                    <CommonText text={'สถานที่ใกล้เคียง'} />
+                    <Text> {'สถานที่ใกล้เคียง'} </Text>
                 </View>
 
                 <Item>
@@ -77,7 +76,7 @@ class FormLiteScreen extends React.PureComponent {
 
 
                 <Button  full light >
-                    <CommonText text={' เพิ่มพิกัดใหม่'} />
+                    <Text> {' เพิ่มพิกัดใหม่'} </Text>
                 </Button>
             </View>
         )

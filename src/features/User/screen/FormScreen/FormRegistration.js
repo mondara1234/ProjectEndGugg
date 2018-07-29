@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 
-export default class FormRegistration extends Component {
+class FormRegistration extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             TextInput_Name: '',
             TextInput_Password: '',
@@ -64,26 +64,28 @@ export default class FormRegistration extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        width:300,
-        backgroundColor:'rgba(255, 255,255,0.2)',
+        width: 300,
+        backgroundColor: 'rgba(255, 255,255,0.2)',
         borderRadius: 25,
-        paddingHorizontal:16,
-        fontSize:16,
-        color:'#ffffff',
+        paddingHorizontal: 16,
+        fontSize: 16,
+        color: '#ffffff',
         marginVertical: 10
     },
     button: {
-        width:300,
-        backgroundColor:'#1c313a',
+        width: 300,
+        backgroundColor: '#1c313a',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 13
     },
     buttonText: {
-        fontSize:16,
-        fontWeight:'500',
-        color:'#ffffff',
-        textAlign:'center'
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#ffffff',
+        textAlign: 'center'
     }
 
 });
+
+export default FormRegistration;

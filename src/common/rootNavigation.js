@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter } from '../features/common/router';
@@ -12,7 +11,6 @@ export const RootStack = StackNavigator({
     ...CommonRouter,
     ...CheckinmapRouter,
     ...UserRouter
-
 },{
     initialRouteName: LOGIN,
     navigationOptions: ({navigation}) => ({

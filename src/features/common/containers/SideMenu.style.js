@@ -1,18 +1,14 @@
 
 export default {
-    container: {
-        paddingTop: 20,
-        flex: 1
-    },
     footerContainer: {
         padding: 20,
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'rgba(111, 165, 255, 0.5)'
     },
     managerView: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 10,
-        backgroundColor: '#991b1f'
+        backgroundColor: 'rgba(111, 165, 255, 0.5)'
     },
     managerIcon: {
         width: 50,
@@ -28,16 +24,46 @@ export default {
     },
     listItemIcon: {
         width: 30,
-        color: '#991b1f',
+        color: '#1d2899',
         fontSize: 20,
 
     },
     listCompany: {
-        width:'100%',
-        flexDirection: 'row',
         alignItems: 'center',
         justifyItems: 'center',
         backgroundColor: 'rgba(111, 165, 255, 0.5)'
+    },
+    viewCompany: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyItems: 'center'
+    },
+    styleLogo: {
+        width: 30,
+        height: 30,
+        margin: 5
+    },
+    styleImage: {
+        width: 80,
+        height: 80,
+        margin: 5
+    },
+    styleH3: {
+        fontSize: 20,
+        color: '#020202',
+        marginBottom: 10
+    },
+    styleUser: {
+        fontSize: 14,
+        color: '#171717'
+    },
+    styleMune: {
+        fontSize: 18,
+        color: '#020202',
+        marginLeft: 10
+    },
+    styleNameicon: {
+        fontSize: 16,
+        color: '#020202'
     }
-
 };

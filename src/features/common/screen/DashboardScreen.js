@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Content, Header, Left, Body, Right, Button, Icon, Title, Thumbnail, Item, Input, Text} from 'native-base';
-import {View,TouchableHighlight} from 'react-native';
+import { Container, Content, Thumbnail, Item, Input, Text} from 'native-base';
+import {View, TouchableHighlight} from 'react-native';
 import HeaderLeftMenu from '../components/HeaderLeftMenu';
 
 class DashboardScreen extends React.Component {
@@ -35,7 +35,7 @@ class DashboardScreen extends React.Component {
                                 style={{height:50,width:80,backgroundColor:'#F4D03F',
                                     justifyContent:'center',flexDirection:'row',
                                     alignItems:'center',borderRadius:25}} >
-                                <Text style={{fontSize:25,fontWeight:'500'}}>กดดิ</Text>
+                                <Text style={{fontSize:25,fontWeight:'500'}}>{'Click'}</Text>
                             </TouchableHighlight>
                         </Item>
                     </View>
@@ -46,8 +46,8 @@ class DashboardScreen extends React.Component {
 }
 
 DashboardScreen.navigationOptions  = ({navigation}) => ({
-    headerTitle: <Text>{'Home'} </Text>,
+    headerTitle: <Text> {'Home'} </Text>,
     headerLeft: <HeaderLeftMenu onPress={() => navigation.openDrawer()} />
-})
+});
 
 export default DashboardScreen;

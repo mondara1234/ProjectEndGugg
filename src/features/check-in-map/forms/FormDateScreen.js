@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {H1} from 'native-base';
-import  CommonText from '../../common/components/CommonText';
 
 class FormDateScreen extends React.PureComponent {
     constructor(props){
@@ -93,8 +92,8 @@ class FormDateScreen extends React.PureComponent {
         return (
             <View>
 
-            <CommonText text={this.state.dates}/>
-            <H1 style={{textAlign:'center'}}> {this.state.time} </H1>
+                <Text> {this.state.dates} </Text>
+                <H1 style={{textAlign:'center'}}> {this.state.time} </H1>
 
             </View>
         )

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {View, Alert, TextInput, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import Logo from '../components/Logo';
 import FormEdit from './FormScreen/FormEdit';
 import FormUpdate from './FormScreen/FormUpdate';
+import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 
-export default class DeleteData extends Component {
+class EditData extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -20,15 +21,20 @@ export default class DeleteData extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Logo  Title='Edit Data'/>
-                <FormUpdate GetInput_ID = {this.state.TextInput_ID}/>
+            <View style={styles.container} >
+                <Logo  Title={'Edit Data'} />
+                <FormUpdate GetInput_ID = {this.state.TextInput_ID} />
                 <FormEdit GetInput_ID = {this.state.TextInput_ID} />
             </View>
         );
     }
 
 }
+
+EditData.navigationOptions  = ({navigation}) => ({
+    headerTitle: <Text> {'EditData'} </Text>,
+    headerRight: <HeaderLeftMenu onPress={() => navigation.openDrawer()} />
+});
 
 const styles = StyleSheet.create({
     container : {
@@ -45,3 +51,5 @@ const styles = StyleSheet.create({
         color:'rgba(255, 255, 255, 0.7)'
     }
 });
+
+export default EditData;

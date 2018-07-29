@@ -1,13 +1,14 @@
 
 import {CLEAR_COUNTER, ADDDATA_COUNTER} from "../actions/TypesActions";
 
-state = {
-    isLoading: true,
-    dataSource: []
-}
+this.state = {
+    dataSource: [],
+    isLoading: true
+};
 
-componentDidMount = () => {
-    return fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php').then((response) => response.json())
+InsertStudentRecordsToServer = () =>{
+    fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php')
+        .then((response) => response.json())
         .then((responseJson) => {
             this.setState({
                 isLoading: false,
@@ -18,11 +19,14 @@ componentDidMount = () => {
         .catch((error) => {
             console.error(error);
         });
-}
+};
 
 const initialState={
-    serverdataSource:this.state.dataSource
+    serverdataSource: this.state.dataSource
 };
+
+console.log(this.state.dataSource);
+
 export default (state=initialState,action)=>{
     switch (action.type){
         case ADDDATA_COUNTER:

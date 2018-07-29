@@ -1,9 +1,11 @@
 import React,{Component} from 'react';
-import {View, StyleSheet, FlatList,ActivityIndicator} from 'react-native';
+import { View, StyleSheet, FlatList, ActivityIndicator, Text } from 'react-native';
 import { Item, Input, Icon } from 'native-base';
 import RenderItemListLocation from '../components/RenderItemListLocation';
+import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 
-export default class ShowListActivity extends Component {
+
+class ShowListActivity extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +15,8 @@ export default class ShowListActivity extends Component {
     }
 
     componentDidMount() {
-        return fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php').then((response) => response.json())
+        return fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php')
+            .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     isLoading: false,
@@ -31,7 +34,7 @@ export default class ShowListActivity extends Component {
         return (
             <RenderItemListLocation
                 navigate={this.props.navigation.navigate}
-                checkType={'EditDataActivity'}
+                checkType={'EDITDATA'}
                 index={index}
                 item={item}
                 checkNamber={checknamber}
@@ -52,7 +55,7 @@ export default class ShowListActivity extends Component {
             <View style={styles.container}>
                 <View style={[styles.Searchstyle,{marginTop:30,marginBottom:10,}]}>
             <Item >
-                <Icon  name="search"   underlineColorAndroid='rgba(0,0,0,0)'/>
+                <Icon name="search" underlineColorAndroid='rgba(0,0,0,0)'/>
                 <Input style={[styles.Searchstyle,{paddingLeft:30}]} placeholder="Select data" placeholderTextColor = "#ffffff"/>
             </Item>
                 </View>
@@ -66,6 +69,12 @@ export default class ShowListActivity extends Component {
     }
 
 }
+
+ShowListActivity.navigationOptions  = ({navigation}) => ({
+    headerTitle: <Text> {'ShowList'} </Text>,
+    headerRight: <HeaderLeftMenu onPress={() => navigation.openDrawer()} />
+});
+
 const styles = StyleSheet.create({
     container : {
         backgroundColor:'#455a64',
@@ -82,3 +91,5 @@ const styles = StyleSheet.create({
     }
 
 });
+
+export default ShowListActivity;
