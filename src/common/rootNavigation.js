@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
-import { CommonRouter, DASHBOARD } from '../features/common/router';
-//import { CheckinmapRouter } from '../features/check-in-map/router';
-//import { UserRouter, LOGIN } from '../features/Database/router';
+import { CommonRouter } from '../features/common/router';
+import { CheckinmapRouter } from '../features/check-in-map/router';
+import { UserRouter, LOGIN } from '../features/User/router';
 import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
 import {Dimensions} from "react-native";
 
 export const RootStack = StackNavigator({
     ...CommonRouter,
+    ...CheckinmapRouter,
+    ...UserRouter
+
 },{
-    initialRouteName: DASHBOARD,
+    initialRouteName: LOGIN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),

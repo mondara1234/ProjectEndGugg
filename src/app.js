@@ -5,8 +5,9 @@ import { StyleProvider, Root } from 'native-base';
 import ThemeVariables from '../native-base-theme/variables/platform';
 import RootNavigation from './common/rootNavigation';
 import getTheme from '../native-base-theme/components';
-import AllReducer from "../components/reducers/index";
+import AllReducer from "../components/reducers";
 import {createStore} from "redux";
+
 export  const store = createStore(AllReducer);
 
 class App extends React.PureComponent{

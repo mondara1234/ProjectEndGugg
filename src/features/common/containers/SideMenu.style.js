@@ -4,71 +4,40 @@ export default {
         paddingTop: 20,
         flex: 1
     },
-    navItemStyle: {
-        padding: 10
-    },
-    navSectionStyle: {
-        backgroundColor: 'lightgrey'
-    },
-    sectionHeadingStyle: {
-        paddingVertical: 10,
-        paddingHorizontal: 5
-    },
     footerContainer: {
         padding: 20,
         backgroundColor: 'lightgrey'
     },
-    MainContainer :{
-
+    managerView: {
+        flexDirection: 'row',
         alignItems: 'center',
-        flex:1,
-        paddingTop: 30,
-        backgroundColor: '#fff'
-
+        paddingVertical: 10,
+        backgroundColor: '#991b1f'
     },
-
-    MainContainer_For_Show_StudentList_Activity :{
-        flex:1,
-        marginLeft: 5,
-        marginRight: 5
-
-    },
-
-    TextInputStyleClass: {
-
-        textAlign: 'center',
-        width: '90%',
-        marginBottom: 7,
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#FF5722',
-        borderRadius: 5 ,
-
-    },
-
-    TouchableOpacityStyle: {
-
-        paddingTop:10,
-        paddingBottom:10,
-        borderRadius:5,
-        marginBottom:7,
-        width: '90%',
-        backgroundColor: '#00BCD4'
-
-    },
-
-    TextStyle:{
-        color:'#fff',
-        textAlign:'center',
-    },
-
-    rowViewContainer: {
-        fontSize: 20,
-        paddingRight: 10,
-        paddingTop: 10,
-        paddingBottom: 10,
+    managerIcon: {
+        width: 50,
+        textAlign: 'right'
     },
     textLeftMinus: {
         marginTop: -10,
+    },
+    listItem: {
+        flexDirection: 'row',
+        marginTop: 10,
+        paddingHorizontal: 10
+    },
+    listItemIcon: {
+        width: 30,
+        color: '#991b1f',
+        fontSize: 20,
+
+    },
+    listCompany: {
+        width:'100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyItems: 'center',
+        backgroundColor: 'rgba(111, 165, 255, 0.5)'
     }
+
 };
