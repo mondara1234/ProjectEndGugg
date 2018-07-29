@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React from 'react';
 import styles from './SideMenu.style';
 import {NavigationActions} from 'react-navigation';
-import {ScrollView, Text, View,Button} from 'react-native';
+import { styles as s } from 'react-native-style-tachyons';
+import { Container, Content, Thumbnail } from 'native-base';
+import { Alert, TouchableOpacity, View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import CommonText from "../components/CommonText";
 
-class Sideber extends Component {
+class Sideber extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -16,46 +20,53 @@ class Sideber extends Component {
     }
     render () {
         return (
-            <View style={styles.container}>
-                <ScrollView>
-                    <View>
-                        <Text style={styles.sectionHeadingStyle}>
-                            Section 1
-                        </Text>
-                        <View style={styles.navSectionStyle}>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Page1')}>
-                                Page1
-                            </Text>
+            <Container>
+                <Content>
+                    <View style={styles.container}>
+                        <View style={[s.flx_i, s.jcc, s.aic, s.pt4, s.pb2]}>
+                            <Thumbnail source={{uri: 'https://www.rendimento.com.br/wp-content/uploads/2017/12/depoimento-3.png'}} />
+                            <CommonText
+                                text={'first_name'}
+                                weight={'bold'}
+                            />
+                            <CommonText
+                                text={'last_name'}
+                                style={styles.textLeftMinus}
+                            />
+                            <CommonText
+                                text={'ตำแหน่ง รอ API'}
+                                weight={'light'}
+                                size={20}
+                            />
+                            <CommonText
+                                text={'3PProfessional'}
+                                weight={'light'}
+                                size={20}
+                            />
                         </View>
+                        <TouchableOpacity style={styles.managerView}>
+                            <Icon style={styles.managerIcon} name="user" size={33} color={'white'} />
+                            <View style={s.ml3}>
+                                <CommonText
+                                    text={'เมนูสำหรับ'}
+                                    color={'white'}
+                                    size={22}
+                                />
+                                <CommonText
+                                    text={'Manger'}
+                                    weight={'bold'}
+                                    color={'white'}
+                                    size={22}
+                                    style={styles.textLeftMinus}
+                                />
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                    <View>
-                        <Text style={styles.sectionHeadingStyle}>
-                            Section 2
-                        </Text>
-                        <View style={styles.navSectionStyle}>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Page2')}>
-                                Page2
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Page3')}>
-                                Page3
-                            </Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={styles.sectionHeadingStyle}>
-                            Section 3
-                        </Text>
-                        <View style={styles.navSectionStyle}>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Page4')}>
-                                Page4
-                            </Text>
-                        </View>
-                    </View>
-                </ScrollView>
+                </Content>
                 <View style={styles.footerContainer}>
                     <Text>This is my fixed footer</Text>
                 </View>
-            </View>
+            </Container>
         );
     }
 }

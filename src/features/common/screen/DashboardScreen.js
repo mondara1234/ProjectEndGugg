@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Content, Header, Left, Body, Right, Button, Icon, Title, Thumbnail, Item, Input, Text} from 'native-base';
 import {View,TouchableHighlight} from 'react-native';
-
+import HeaderLeftMenu from '../components/HeaderLeftMenu';
 
 class DashboardScreen extends React.Component {
     constructor(props) {
@@ -12,20 +12,6 @@ class DashboardScreen extends React.Component {
         return (
             <Container style={{backgroundColor:'#fe2526' }}>
                 <Content>
-                    <Header style={{backgroundColor:'#196F3D'}}>
-                        <Left>
-                            <Button transparent
-                                    onPress={()=>this.props.navigation.openDrawer()}
-                            >
-                                <Icon name='menu' />
-                            </Button>
-                        </Left>
-                        <Body>
-                        <Title> หน้าหลัก </Title>
-                        </Body>
-                        <Right>
-                        </Right>
-                    </Header>
                     <View style={{flex:1}}>
                         <View style={{justifyContent:'center',flexDirection:'row',marginTop:30}}>
                             <Thumbnail
@@ -58,5 +44,10 @@ class DashboardScreen extends React.Component {
         );
     }
 }
+
+DashboardScreen.navigationOptions  = ({navigation}) => ({
+    headerTitle: <Text>{'Home'} </Text>,
+    headerLeft: <HeaderLeftMenu onPress={() => navigation.openDrawer()} />
+})
 
 export default DashboardScreen;

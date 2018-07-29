@@ -67,5 +67,8 @@ export default {
         paddingRight: 10,
         paddingTop: 10,
         paddingBottom: 10,
+    },
+    textLeftMinus: {
+        marginTop: -10,
     }
 };
