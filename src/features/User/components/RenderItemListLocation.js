@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Image, Alert} from "react-native";
+import {StyleSheet, Image, Alert, Text} from "react-native";
 import { Card, CardItem, Body, Right } from 'native-base';
-import CommonText from '../../common/components/CommonText';
 
 const RenderItemListLocation = (props) => {
     let dii = props.checkNamber;
@@ -34,20 +33,16 @@ const RenderItemListLocation = (props) => {
                             source={{uri: props.item.name}}
                             style={styles.stylePicture}
                         />
-                        <CommonText
+                        <Text style={styles.styleCommonText}>
                             text={props.item.email}
-                            size={28}
-                            style={styles.styleCommonText}
-                        />
-                        <CommonText
+                        </Text>
+                        <Text style={styles.styleCommonText}>
                             text={props.item.password}
-                            style={styles.styleCommonText}
-                        />
+                        </Text>
                         <Right>
-                            <CommonText
-                                text={props.item.number}
-                                style={styles.styleCommonText}
-                            />
+                            <Text style={styles.styleCommonText}>
+                                {props.item.number}
+                            </Text>
                         </Right>
                     </Body>
                 </CardItem>

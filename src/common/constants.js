@@ -7,4 +7,5 @@ export const HEADER_STYLE = {
     headerTintColor: 'white'
 };
 
+
 export const DEFAULT_LOCALE = 'th';
