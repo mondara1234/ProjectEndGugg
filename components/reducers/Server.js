@@ -1,5 +1,13 @@
-/*UserLoginFunction = () =>{
-    fetch('http://192.168.1.30/My_SQL/ShowAllDataList.php').then((response) => response.json())
+
+import {CLEAR_COUNTER, ADDDATA_COUNTER} from "../actions/TypesActions";
+
+state = {
+    isLoading: true,
+    dataSource: []
+}
+
+componentDidMount = () => {
+    return fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php').then((response) => response.json())
         .then((responseJson) => {
             this.setState({
                 isLoading: false,
@@ -11,13 +19,9 @@
             console.error(error);
         });
 }
-var serverdata=[this.props.dataSource];*/
-
-import {CLEAR_COUNTER, ADDDATA_COUNTER} from "../actions/TypesActions";
 
 const initialState={
-    serverdataSource:[],
-    value:0
+    serverdataSource:this.state.dataSource
 };
 export default (state=initialState,action)=>{
     switch (action.type){

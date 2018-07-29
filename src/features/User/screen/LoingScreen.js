@@ -44,6 +44,7 @@ export default class LoingScreen extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <View style={styles.container}>
                 <Logo Title="WECOME MyAPP"/>
