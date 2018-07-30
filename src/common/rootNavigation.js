@@ -4,15 +4,17 @@ import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter } from '../features/common/router';
 import { CheckinmapRouter } from '../features/check-in-map/router';
 import { UserRouter, LOGIN } from '../features/User/router';
+import { qrcodeRouter, QRCODE_SCREEN } from '../features/qrcodeScanner/router';
 import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
 import {Dimensions} from "react-native";
 
 export const RootStack = StackNavigator({
     ...CommonRouter,
     ...CheckinmapRouter,
-    ...UserRouter
+    ...UserRouter,
+    ...qrcodeRouter
 },{
-    initialRouteName: LOGIN,
+    initialRouteName: QRCODE_SCREEN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),
