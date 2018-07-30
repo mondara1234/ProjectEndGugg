@@ -1,0 +1,92 @@
+import React from 'react'
+import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native';
+import QRCode from 'react-native-qrcode';
+
+class QRCodesScreen extends React.Component {
+    state = {
+        Text_Input: '',
+        Text_Output: ''
+    };
+
+    getTextInputValue=()=>{
+      this.setState({
+          Text_Output: this.state.Text_Input
+      })
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.textTitle}> {'สามารถเพิ่มเพื่อนได้ง่ายๆ เพียงแสกน คิวอาร์โค้ต ด้างล่างนี้ '} </Text>
+                <View style={styles.viewQrcode}>
+                <QRCode
+                    value={this.state.Text_Output}
+                    size={200}
+                    bgColor='#000000'
+                    fgColor='#455a64'
+                />
+                </View>
+                <Text style={styles.textTitle}> {'เปลี่ยน QRcode '} </Text>
+                <TextInput
+                    style={styles.textInput}
+                    onChangeText={(text) => this.setState({Text_Input: text})}
+                    underlineColorAndroid={"transparent"}
+                    placeholder={"กรอกข้อมูล QRCode"}
+                />
+                <TouchableOpacity
+                    onPress={this.getTextInputValue}
+                    activeOpacity={0.7}
+                    style={styles.button}
+                >
+                    <Text style={styles.textStyle}>{'Generate'}</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    };
+}
+
+QRCodesScreen.navigationOptions  = ({navigation}) => ({
+    header: null
+});
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor:'#455a64',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textInput: {
+        width: '100%',
+        height: 40,
+        marginBottom: 10,
+        marginTop: 20,
+        alignItems: 'center',
+        borderRadius: 10,
+        borderWidth: 1,
+    },
+    button: {
+        width: '100%',
+        paddingVertical: 8,
+        backgroundColor: '#c41f27',
+        borderRadius: 7,
+        marginVertical: 20
+    },
+    textStyle: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 18
+    },
+    textTitle: {
+        color: '#f1f4ff',
+        textAlign: 'center',
+        fontSize: 18
+    },
+    viewQrcode: {
+        borderWidth: 4,
+        marginVertical: 40
+    }
+
+});
+
+export  default QRCodesScreen;
