@@ -1,12 +1,11 @@
 # ProjectEndGugg
 
-### 1. Install node_module
-- run `$npm install`
+### 1.  เปิดโปรแกรม แล้วทำการรัน
+- npm install
 
-### 2. Run application via simulator
+### 2. Run App
 #### IOS
-- run `$ react-native run-ios`
+- react-native run-ios
 #### Android
-- run `$ react-native run-android`
+- react-native run-android
 
-### 3. Enjoy.
