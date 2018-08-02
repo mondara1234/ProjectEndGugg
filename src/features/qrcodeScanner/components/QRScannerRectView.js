@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 
 const QRScannerRectView  = (props) => {
+    this.measureTotalSize = this.measureTotalSize.bind(this);
+    this.measureRectPosition = this.measureRectPosition.bind(this);
+
         this.state = {
             topWidth: 0,
             topHeight: 0,
