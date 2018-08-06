@@ -15,7 +15,7 @@ class LoingScreen extends Component {
         const { UserEmail }  = this.state ;
         const { UserPassword }  = this.state ;
 
-        fetch('http://192.168.1.33/My_SQL/User_Login.php', {
+        fetch('http://192.168.1.30/My_SQL/User_Login.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

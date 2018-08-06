@@ -2,25 +2,19 @@
 import React from 'react';
 import {NavigationActions} from 'react-navigation';
 import { styles as s } from 'react-native-style-tachyons';
-import { Container, Content, H3,ListItem, Left, Thumbnail, Right, Body } from 'native-base';
+import { Container, Content, H3, Left, Thumbnail, Right } from 'native-base';
 import { Alert, TouchableOpacity, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './SideMenu.style';
-import { DASHBOARD } from '../router';
 
 class Sideber extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    navigateToScreen = (route) => () => {
-        const navigateAction = NavigationActions.navigate({
-            routeName: route
-        });
-        this.props.navigation.dispatch(navigateAction);
-    }
-
     render () {
+        const { navigate } = this.props.navigation;
+
         return (
             <Container>
                 <Content>
@@ -68,7 +62,7 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen('DASHBOARD')
+                                navigate('DASHBOARD')
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="home" />
@@ -77,7 +71,7 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen(DASHBOARD)
+                                navigate('QRCODE_SCREEN')
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="user" />
@@ -86,7 +80,7 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('QRCODE_SCREEN')
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="envelope" />
@@ -95,7 +89,7 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('QRCODE_SCREEN')
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="list" />
@@ -104,7 +98,7 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('QRCODE_SCREEN')
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="location-arrow" />
@@ -113,16 +107,16 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('SCANQR_SCREEN')
                             }}
                         >
-                            <Icon style={styles.listItemIcon} name="calendar" />
-                            <Text style={styles.styleNameicon}> {'เวลา'} </Text>
+                            <Icon style={styles.listItemIcon} name="camera" />
+                            <Text style={styles.styleNameicon}> {'สแกนQRcode'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('QRCODE_SCREEN')
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="qrcode" />

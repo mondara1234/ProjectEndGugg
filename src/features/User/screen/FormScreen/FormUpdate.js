@@ -14,7 +14,7 @@ class FormUpdate extends Component {
     }
 
     componentDidMount() {
-        fetch('http://192.168.1.33/My_SQL/ShowOneDataList.php', {
+        fetch('http://192.168.1.30/My_SQL/ShowOneDataList.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

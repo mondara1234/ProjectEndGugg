@@ -5,6 +5,4 @@ import App from './src/app';
 
 const ProjectEnd = () => <App />;
 
-export default ProjectEnd;
-
 AppRegistry.registerComponent(AppGugg, () => ProjectEnd);

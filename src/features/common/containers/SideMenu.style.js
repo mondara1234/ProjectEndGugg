@@ -1,7 +1,9 @@
 
 export default {
     footerContainer: {
-        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 30,
         backgroundColor: 'rgba(111, 165, 255, 0.5)'
     },
     managerView: {
