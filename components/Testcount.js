@@ -18,6 +18,10 @@ class Testcount extends Component{
         this.props.SET_COUNTER(count);
         this.setState({count});
     }
+    onClear(){
+        this.props.CLEAR_COUNTER();
+        this.setState({count : ''});
+    }
 
         render(){
         console.log(this.props);
@@ -38,7 +42,7 @@ class Testcount extends Component{
                     <Text style={[welcome,{width: 80}]}> {this.props.count}</Text>
                     <Button  onPress={this.props.DECREMENT_COUNTER} title="-"/>
                 </View>
-                <Button  onPress={this.props.CLEAR_COUNTER} title="Clear"/>
+                <Button  onPress={this.onClear} title="Clear"/>
             </View>
 
 
