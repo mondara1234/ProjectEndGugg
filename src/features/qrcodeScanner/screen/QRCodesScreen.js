@@ -18,13 +18,15 @@ class QRCodesScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.textTitle}> {'สามารถเพิ่มเพื่อนได้ง่ายๆ เพียงแสกน คิวอาร์โค้ต ด้างล่างนี้ '} </Text>
-                <View style={styles.viewQrcode}>
+                <View style={styles.borderQrcode}>
+                    <View style={styles.viewQrcode}>
                 <QRCode
                     value={this.state.Text_Output}
                     size={200}
-                    bgColor='#000000'
-                    fgColor='#455a64'
+                    bgColor='#fff'
+                    fgColor='#000'
                 />
+                </View>
                 </View>
                 <Text style={styles.textTitle}> {'เปลี่ยน QRcode '} </Text>
                 <TextInput
@@ -52,7 +54,7 @@ QRCodesScreen.navigationOptions  = ({navigation}) => ({
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:'#455a64',
+        backgroundColor:'#ABABAB',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -73,17 +75,24 @@ const styles = StyleSheet.create({
         marginVertical: 20
     },
     textStyle: {
-        color: '#fff',
+        color: '#000000',
         textAlign: 'center',
         fontSize: 18
     },
     textTitle: {
-        color: '#f1f4ff',
+        color: '#000000',
         textAlign: 'center',
         fontSize: 18
     },
     viewQrcode: {
-        borderWidth: 4,
+        borderWidth: 6,
+        borderColor: '#ABABAB'
+    },
+    borderQrcode: {
+        borderWidth: 7,
+        borderColor: '#fff',
+        paddingVertical: 10,
+        paddingHorizontal: 10,
         marginVertical: 40
     }
 

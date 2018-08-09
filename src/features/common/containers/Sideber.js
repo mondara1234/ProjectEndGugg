@@ -52,7 +52,7 @@ class Sideber extends React.Component {
                             <Icon
                                 style={styles.managerIcon}
                                 name="user"
-                                size={33} c
+                                size={33}
                                 olor={'white'}
                             />
                             <View style={s.ml3}>

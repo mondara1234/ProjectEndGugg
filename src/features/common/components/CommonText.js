@@ -17,7 +17,6 @@ CommonText.propTypes = {
     weight: PropTypes.string,
     size: PropTypes.number,
     color: PropTypes.string,
-    style: View.propTypes.style,
     text: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
@@ -28,8 +27,7 @@ CommonText.defaultProps = {
     weight: 'regular',
     size: 24,
     color: s.black,
-    text: '',
-    style: {}
+    text: ''
 };
 
 export default CommonText;
