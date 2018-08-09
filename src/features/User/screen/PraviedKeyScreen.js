@@ -1,7 +1,6 @@
 import React from "react";
 import { Keyboard, View, StyleSheet, TouchableOpacity, Alert, Dimensions, DeviceEventEmitter } from 'react-native';
 import { Container,Content, Button } from 'native-base';
-import CodeInput from 'react-native-confirmation-code-input';
 import CommonText from "../../common/components/CommonText";
 import VirtualKeyboard from '../components/VirtualKeyboard';
 
@@ -9,49 +8,56 @@ class PraviedKeyScreen extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            code: '',
-            textkey: '',
-            passcode: [],
-            oo: []
+            passcode: []
         };
     }
 
-    _onFinishCheckingCode(isValid, code) {
-        console.log(code);
-        if (this.state.code == '') {
+    _onFinishCheckingCode() {
+        let checkData = '123456';   //'เช็ดกฟะฟมีค่าไหม';
+        let checkPass = this.state.passcode[0]+
+                        this.state.passcode[1]+
+                        this.state.passcode[2]+
+                        this.state.passcode[3]+
+                        this.state.passcode[4]+
+                        this.state.passcode[5];
+
+        if (checkData === '') {
             Alert.alert(
                 'Confirmation Code',
                 'Set the code successfully!',
                 [{text: 'OK'}],
-                { cancelable: false }
+                this.setState({
+                    passcode: []
+                })
             );
-        }else if (!isValid) {
-            Alert.alert(
-                'Confirmation Code',
-                'Code not match!',
-                [{text: 'OK'}],
-                { cancelable: false }
-            );
-        } else {
-            this.setState({ code: code });
+        }else if (checkPass === checkData) {
             Alert.alert(
                 'Confirmation Code',
                 'Successful!',
                 [{text: 'OK'}],
-                { cancelable: false }
+                this.setState({
+                    passcode: []
+                })
+            );
+        } else {
+            Alert.alert(
+                'Confirmation Code',
+                'Code not match!',
+                [{text: 'OK'}],
+                this.setState({
+                    passcode: []
+                })
             );
         }
     }
 
     _checkText = (val) => {
-        console.log(this.state.passcode.length);
-        let checkTexts = [];
-        if(val === 'back'){
-            this.setState({
-                passcode: [
-                    ...this.state.passcode,val
-                ]
-            })
+        if(val !== 'back'){
+            const addPass = [...this.state.passcode];
+            addPass.push(val);
+           this.setState({
+                passcode: addPass
+            });
         }else {
             const copyArr = [...this.state.passcode];
             copyArr.pop();
@@ -59,14 +65,10 @@ class PraviedKeyScreen extends React.PureComponent {
                 passcode: copyArr
             });
         }
-        this.setState({ passcode: checkTexts });
-        console.log('checkTexts='+' '+checkTexts);
-        console.log('passcode='+' '+this.state.passcode);
-    }
+    };
 
     render() {
-        const oo = [];
-
+        const checkText = this.state.passcode[5] ? this._onFinishCheckingCode() : '';
         return (
             <Container style={styles.container}>
                 <CommonText text={'กรอกรหัสส่วนตัว'} size={50} />
@@ -87,32 +89,19 @@ class PraviedKeyScreen extends React.PureComponent {
                         <View style={[styles.checkView,{backgroundColor: this.state.passcode[4] ? 'black' : 'white'}]} />
                     </View>
                     <View style={styles.borderView}>
-                        <View style={[styles.checkView,{backgroundColor: this.state.passcode[5] ? 'black' : 'white'}]} />
+                        <View style={[styles.checkView,{backgroundColor: this.state.passcode[5] ? 'black': 'white'}]} >
+                        </View>
                     </View>
                 </View>
-                <TouchableOpacity
-                    onPress={() => {
-                        this.setState({
-                            oo: [
-                                ...this.state.oo,8
-                            ]
-                        });
-                    }}
-                >
-                    <CommonText text={'11111'} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {
-                        const copyArr = [...this.state.oo];
-                        copyArr.pop();
-                        this.setState({
-                            oo: copyArr
-                        });
-                    }}
-                    style={{marginTop: 80}}
-                >
-                    <CommonText text={'11111'} />
-                </TouchableOpacity>
+                <View style={styles.viewKeyboard}>
+                    <VirtualKeyboard
+                        pressMode={'string'}
+                        color={'gray'}
+                        applyBackspaceTint={true}
+                        decimal={false}
+                        onPress={(val) => this._checkText(val)}
+                    />
+                </View>
             </Container>
         )
     }
@@ -151,15 +140,14 @@ const styles = StyleSheet.create({
         height: 20,
         borderRadius: 50
     },
-    containerCodeInput: {
-        paddingBottom: 20,
+    viewKeyboard:{
+        flex:1,
         alignItems: 'center',
-        justifyContent: 'center'
-    },
-    borderCodeInput: {
-        borderWidth: 1.5,
-        backgroundColor: 'transparent',
-        color: '#000'
+        justifyContent: 'center',
+        position: 'absolute',
+        right: 0,
+        left: 0,
+        bottom: '10%'
     }
 });
 

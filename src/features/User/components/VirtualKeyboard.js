@@ -5,19 +5,17 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
 class VirtualKeyboard extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-        };
-    }
-
     Backspace() {
         return (
-            <TouchableOpacity accessibilityLabel='backspace' style={styles.backspace} onPress={() => { this.onPress('back') }}>
+            <TouchableOpacity
+                accessibilityLabel='backspace'
+                style={styles.backspace}
+                onPress={() => { this.onPress('back') }}
+            >
                 <IconFont5
                     size={33}
-                    resizeMode='contain' style={this.props.applyBackspaceTint && ({ tintColor: this.props.color })}
+                    resizeMode='contain'
+                    style={this.props.applyBackspaceTint && ({ tintColor: this.props.color })}
                     name="md-backspace"
                 />
             </TouchableOpacity>
@@ -27,12 +25,19 @@ class VirtualKeyboard extends Component {
     //รูปแบบแสดงของปุ่ม
     Cell(symbol) {
         return (
-            <TouchableOpacity style={styles.cell} key={symbol} accessibilityLabel={symbol.toString()}
-                              onPress={() => { this.onPress(symbol.toString()) }}>
-                <Text style={[styles.number, { color: this.props.color }]}>{symbol}</Text>
+            <TouchableOpacity
+                style={styles.cell}
+                key={symbol}
+                accessibilityLabel={symbol.toString()}
+                onPress={() => { this.onPress(symbol.toString()) }}
+            >
+                <Text style={[styles.number, { color: this.props.color }]}>
+                    {symbol}
+                </Text>
             </TouchableOpacity>
         );
     }
+
     //คำสั่งแสดงปุุ่มตามตัวเลขได้รับมา
     Row(numbersArray) {
       //  console.log('numbersArray='+ numbersArray);
@@ -44,26 +49,9 @@ class VirtualKeyboard extends Component {
         );
     }
 
-
     onPress(val) {
-       // console.log('val='+ val);
-        if (this.props.pressMode === 'string') {
-            let curText = this.state.text;
-            if (isNaN(val)) {
-                if (val === 'back') {
-                    curText = curText.slice(0, -1);
-                } else {
-                    curText += val;
-                }
-            } else {
-                curText += val;
-            }
-            this.setState({ text: curText });
-            this.props.onPress(curText);
-          //  console.log('curText='+ curText);
-        } else {
-            this.props.onPress(val);
-        }
+        this.props.onPress(val);
+        console.log('val='+ val);
     }
 
         render() {
@@ -87,14 +75,15 @@ VirtualKeyboard.propTypes = {
     color: PropTypes.string,
     onPress: PropTypes.func.isRequired,
     applyBackspaceTint: PropTypes.bool,
-    decimal: PropTypes.bool
+    decimal: PropTypes.bool,
+    checkDisbles: PropTypes.bool.isRequired
 };
 
 VirtualKeyboard.defaultProps = {
     pressMode: '',
     color: '',
-    applyBackspaceTint: true,
-    decimal: false,
+    applyBackspaceTint: false,
+    decimal: true,
 };
 
 const styles = StyleSheet.create({
