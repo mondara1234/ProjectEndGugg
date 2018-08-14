@@ -1,46 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IconFont5 from 'react-native-vector-icons/Ionicons';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class VirtualKeyboard extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     Backspace() {
         return (
             <TouchableOpacity
-                accessibilityLabel='backspace'
                 style={styles.backspace}
                 onPress={() => { this.onPress('back') }}
             >
-                <IconFont5
+                <Icon
                     size={33}
-                    resizeMode='contain'
-                    style={this.props.applyBackspaceTint && ({ tintColor: this.props.color })}
-                    name="md-backspace"
+                    name="md-arrow-back"
                 />
             </TouchableOpacity>
         );
     }
-
     //รูปแบบแสดงของปุ่ม
     Cell(symbol) {
         return (
             <TouchableOpacity
                 style={styles.cell}
-                key={symbol}
-                accessibilityLabel={symbol.toString()}
                 onPress={() => { this.onPress(symbol.toString()) }}
+                disabled={this.props.disableds}
             >
-                <Text style={[styles.number, { color: this.props.color }]}>
+                <Text style={styles.number}>
                     {symbol}
                 </Text>
             </TouchableOpacity>
         );
     }
-
     //คำสั่งแสดงปุุ่มตามตัวเลขได้รับมา
     Row(numbersArray) {
-      //  console.log('numbersArray='+ numbersArray);
         let cells = numbersArray.map((val) => this.Cell(val));
         return (
             <View style={styles.row}>
@@ -51,7 +47,6 @@ class VirtualKeyboard extends Component {
 
     onPress(val) {
         this.props.onPress(val);
-        console.log('val='+ val);
     }
 
         render() {
@@ -72,32 +67,27 @@ class VirtualKeyboard extends Component {
 
 VirtualKeyboard.propTypes = {
     pressMode: PropTypes.oneOf(['string', 'char']),
-    color: PropTypes.string,
     onPress: PropTypes.func.isRequired,
-    applyBackspaceTint: PropTypes.bool,
-    decimal: PropTypes.bool,
-    checkDisbles: PropTypes.bool.isRequired
+    disableds: PropTypes.bool.isRequired,
+    decimal: PropTypes.bool
 };
 
 VirtualKeyboard.defaultProps = {
     pressMode: '',
-    color: '',
-    applyBackspaceTint: false,
-    decimal: true,
+    decimal: true
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 40,
-        marginHorizontal: 30,
+        marginHorizontal: 15,
         alignItems: 'flex-start'
     },
     row: {
         flexDirection: 'row',
-        marginTop: 15
+        marginTop: 40
     },
     number: {
-        fontSize: 25,
+        fontSize: 35,
         textAlign: 'center'
     },
     backspace: {

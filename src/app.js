@@ -10,8 +10,6 @@ import {createStore} from "redux";
 
 export  const store = createStore(AllReducer);
 
-console.log(store);
-
 class App extends React.PureComponent{
     render() {
         return (

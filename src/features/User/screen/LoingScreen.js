@@ -4,7 +4,7 @@ import Logo from '../components/Logo';
 
 class LoingScreen extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             UserEmail: '',
             UserPassword: ''
@@ -37,14 +37,14 @@ class LoingScreen extends Component {
             }).catch((error) => {
             console.error(error);
         });
-    }
+    };
 
       RegistrationFunction = () =>{
         this.props.navigation.navigate( 'REGISTRATION');
-    }
+    };
 
     render() {
-        console.log(this.props);
+        console.log('storm'+this.props);
         return (
             <View style={styles.container}>
                 <Logo Title="WECOME MyAPP"/>

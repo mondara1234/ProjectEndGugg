@@ -32,13 +32,13 @@ export default {
     },
     listCompany: {
         alignItems: 'center',
-        justifyItems: 'center',
+        justifyContent: 'center',
         backgroundColor: 'rgba(111, 165, 255, 0.5)'
     },
     viewCompany: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyItems: 'center'
+        justifyContent: 'center'
     },
     styleLogo: {
         width: 30,

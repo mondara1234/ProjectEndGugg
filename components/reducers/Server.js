@@ -1,33 +1,25 @@
 
 import {CLEAR_COUNTER, ADDDATA_COUNTER} from "../actions/TypesActions";
 
-this.state = {
-    dataSource: [],
-    isLoading: true
-};
-
-InsertStudentRecordsToServer = () =>{
-    fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            this.setState({
-                isLoading: false,
-                dataSource: responseJson
-            }, function() {
-            });
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-};
+// InsertStudentRecordsToServer = () =>{
+//     fetch('http://192.168.1.30/My_SQL/ShowAllDataList.php')
+//         .then((response) => response.json())
+//         .then((responseJson) => {
+//             }, function() {
+//         })
+//         .catch((error) => {
+//             console.error(error);
+//         });
+// };
+// let mon = this.InsertStudentRecordsToServer();
+// let ll = [mon];
 
 const initialState={
-    serverdataSource: this.state.dataSource
+    serverdataSource: [],
+    value: 0
 };
 
-console.log(this.state.dataSource);
-
-export default (state=initialState,action)=>{
+export default (state = initialState,action)=>{
     switch (action.type){
         case ADDDATA_COUNTER:
             return state={//ใช้สำหรับมีข้อมูลเยอะ สามารเลิกค่าที่ต้องเปลี่ยนได้

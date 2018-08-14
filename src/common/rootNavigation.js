@@ -3,7 +3,7 @@ import { DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter } from '../features/common/router';
 import { CheckinmapRouter } from '../features/check-in-map/router';
-import { UserRouter, LOGIN } from '../features/User/router';
+import { UserRouter, LOGIN ,PRAVIEDKEY } from '../features/User/router';
 import { qrcodeRouter } from '../features/qrcodeScanner/router';
 import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
 import {Dimensions} from "react-native";
