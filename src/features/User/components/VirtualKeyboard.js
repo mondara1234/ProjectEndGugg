@@ -4,9 +4,6 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class VirtualKeyboard extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     Backspace() {
         return (
@@ -25,6 +22,7 @@ class VirtualKeyboard extends Component {
     Cell(symbol) {
         return (
             <TouchableOpacity
+                key={symbol}
                 style={styles.cell}
                 onPress={() => { this.onPress(symbol.toString()) }}
                 disabled={this.props.disableds}

@@ -1,8 +1,12 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import { YellowBox, AppRegistry } from 'react-native'
 import { nameProject as AppGugg } from './app.json';
 import App from './src/features/User/screen/PraviedKeyScreen';
 
 const ProjectEnd = () => <App />;
+
+YellowBox.ignoreWarnings([
+    'Remote debugger',
+]);
 
 AppRegistry.registerComponent(AppGugg, () => ProjectEnd);
