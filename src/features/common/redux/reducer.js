@@ -1,7 +1,8 @@
 import initialState from './initialState';
+import {reducer as navigation} from './reducers/navigertion';
 
 const reducers = [
-
+    navigation
 ];
 
 export default function reducer(state = initialState, action = {}) {

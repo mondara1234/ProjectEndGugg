@@ -32,3 +32,7 @@ export const countermodara =(ADDdata)=>{
     };
 }
 
+export const runStore= (flights) => ({
+    type: 'GET_FLIGHT',
+    payload: flights
+});

@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, FlatList,ActivityIndicator} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, FlatList,ActivityIndicator, Image} from 'react-native';
 import { Button, Item, Input, Icon, H3, ListItem, Left, Thumbnail, Body  } from 'native-base';
 
 class FormLiteScreen extends React.PureComponent {
     constructor (props) {
-        super(props)
+        super(props);
         this.state = {
             dataSource: [],
             isLoading: true
@@ -12,7 +12,7 @@ class FormLiteScreen extends React.PureComponent {
     }
 
     componentDidMount () {
-       var url = 'http://www.json-generator.com/api/json/get/cfOmgHmYMO?indent=2'
+       var url = 'http://www.json-generator.com/api/json/get/cfOmgHmYMO?indent=2';
         fetch(url)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -26,14 +26,22 @@ class FormLiteScreen extends React.PureComponent {
             })
     }
 
-
+//     const qrCodeUrl = `${BASE_URL}/qr/${identifier_token}.png`;
+// <Image
+// source={{uri: qrCodeUrl}}
+// style={{width: 200, height: 200}}
+// />
 
     _renderItem = ({item,index}) => {
+        let ss = 'user.png';
         return (
             <View style={{flex: 1 ,width: '100%', backgroundColor: index % 2 == 0 ? "#8ef7ff" : "#ff78f4"}}>
                 <ListItem thumbnail >
                     <Left>
-                        <Thumbnail source={{uri: item.image}}  style={{ width: 60, height: 60, margin: 5}} />
+                        <Image
+                            source={require('../../../../pulic/assets/images/'+ss)}
+                        />
+                        {/*<Thumbnail source={{uri: item.image}}  style={{ width: 60, height: 60, margin: 5}} />*/}
                     </Left>
                     <Body>
                         <H3 style={{fontSize: 16, color: '#020202', marginBottom: 10}}>{item.title} </H3>

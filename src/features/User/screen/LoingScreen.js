@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {StyleSheet, Alert, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
 import Logo from '../components/Logo';
+import {store} from "../../../app";
 
 class LoingScreen extends Component {
     constructor(props) {
@@ -15,7 +19,7 @@ class LoingScreen extends Component {
         const { UserEmail }  = this.state ;
         const { UserPassword }  = this.state ;
 
-        fetch('http://192.168.1.30/My_SQL/User_Login.php', {
+        fetch('http://localhost/My_SQL/User_Login.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -44,7 +48,9 @@ class LoingScreen extends Component {
     };
 
     render() {
-        console.log('storm'+this.props);
+        store.subscribe(()=>{
+            console.log('Update Store:',store.getState());
+        });
         return (
             <View style={styles.container}>
                 <Logo Title="WECOME MyAPP"/>
@@ -137,4 +143,14 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoingScreen;
+function mapStateToProps(state) {
+    return{
+        count: state.counterreducer,
+        server: state.serverreducer
+    };
+}
+
+
+export default connect(mapStateToProps
+)(LoingScreen);
+
