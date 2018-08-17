@@ -22,17 +22,37 @@ class Testcount extends Component{
         this.props.CLEAR_COUNTER();
         this.setState({count : ''});
     }
-
+    testIMG(){
+        let cars = ["icon", "logo1", "user"];
+        let text = "";
+        let i;
+        for (i = 0; i < cars.length; i++) {
+            text += cars[i] + '\n';//+= เอาค่ามารวมกันยาวๆ
+        }
+        console.log(text);
+    }
+    testText(){
+        let cars = ["icon", "logo1", "user"];
+        let text = "";
+        let i;
+        for (i = 0; i < cars.length; i++) {
+            text = cars[i]; //= เอามาทีละค่า
+            this.props.ADDDATA_COUNTER(text)
+        }
+        console.log(text);
+    }
         render(){
         console.log(this.props);
         const {container, countViewStyle, welcome, instructions} = styles;
         const data = this.props.server.serverdataSource[0];
         const data1 = this.props.server.serverdataSource[1];
+        const data2 = this.props.server.serverdataSource[2];
         return(
             <View style={container}>
-                <Button  onPress={()=>this.props.ADDDATA_COUNTER('kakzadsr')} title="ShowData"/>
+                <Button  onPress={()=>this.testText()} title="ShowData"/>
                 <Text style={welcome}>array[0]: {data}</Text>
                 <Text style={welcome}>array[1]: {data1}</Text>
+                <Text style={welcome}>array[2]: {data2}</Text>
                 <TextInput style={{width: 80, height:40, borderWidth:1}}
                            onChangeText={this.onChengeText}
                            value={this.state.count.toString()}
