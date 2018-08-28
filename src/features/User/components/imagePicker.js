@@ -9,41 +9,46 @@ class imagePicker extends React.Component{
         super();
         this.state = {
             imageSource: null,
-            data: null
+            data: null,
+            filename: null
         }
     }
 
-    selectPhoto(){
+    selectPhotoTapped() {
+
+        const options = {
+            quality: 1.0,
+            maxWidth: 500,
+            maxHeight: 500,
+            storageOptions: {
+                skipBackup: true
+            },
+            mediaType: 'photo'
+        };
+
         ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
-
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
+            if (!response.uri) {
+                return;
             }
-            else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            }
-            else {
-                let source = { uri: response.uri };
+            let source = { uri: response.uri };
 
-                // You can also display the image using data:
-                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+            // You can also display the image using data:
+            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-                this.setState({
-                    imageSource: source,
-                    data: response.data
-                });
-            }
-        });
+            this.setState({
+                imageSource: source,
+                data: response.data,
+                filename: response.fileName
+            });
+        })
     }
-
     uploadPhoto(){
         RNFetchBlob.fetch('POST', 'http://192.168.1.28/My_SQL/upload.php', {
             Authorization : "Bearer access-token",
             otherHeader : "foo",
             'Content-Type' : 'multipart/form-data',
         }, [
-            { name : 'image', filename : 'image.png', type:'image/png', data: this.state.data},
+            { name : 'fileToUpload', filename : this.state.filename, type: 'image/jpeg', data: this.state.data},
             console.log('Data',this.state.data)
         ]).then((resp) => {
             console.log('resp ='+ resp);
@@ -56,10 +61,10 @@ class imagePicker extends React.Component{
 
         return(
             <Container style={styles.container}>
-                <Image  style={{width:120, height: 120, borderRadius: 80}}
+                <Image  style={{width: 300, height: 300, borderRadius: 80}}
                         source={this.state.imageSource != null ? this.state.imageSource :
                             require('../../../../pulic/assets/images/user.png')}/>
-                <TouchableOpacity style={styles.button} onPress={this.selectPhoto.bind(this)}>
+                <TouchableOpacity style={styles.button} onPress={this.selectPhotoTapped.bind(this)}>
                    <Text> {'เลือกรูปภาพ'}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={this.uploadPhoto.bind(this)}>
@@ -70,17 +75,6 @@ class imagePicker extends React.Component{
     }
 
 }
-
-const options = {
-    title: 'Select a photo',
-    storageOptions: {
-        skipBackup: true,
-        path: 'images'
-    },
-    takePhotoButtonTitle: 'ถ่ายรูป',
-    chooseFromLibraryButtonTitle: 'เลือกรูปจากคลัง',
-    quality: 1
-};
 
 const styles = StyleSheet.create({
     container: {
