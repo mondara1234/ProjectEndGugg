@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter } from '../features/common/router';
-import { CheckinmapRouter } from '../features/check-in-map/router';
-import { UserRouter, LOGIN ,PRAVIEDKEY } from '../features/User/router';
+import { historyRouter } from "../features/history/router";
+import { ListFoodRouter } from "../features/listFood/router";
+import { SelectFoodRouter } from "../features/selectFood/router";
+import { UserRouter, LOGIN } from '../features/User/router';
 import { qrcodeRouter } from '../features/qrcodeScanner/router';
 import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
 import {Dimensions} from "react-native";
@@ -12,9 +13,11 @@ import {createReduxBoundAddListener} from "react-navigation-redux-helpers";
 
 export const RootStack = StackNavigator({
     ...CommonRouter,
-    ...CheckinmapRouter,
+    ...historyRouter,
     ...UserRouter,
-    ...qrcodeRouter
+    ...qrcodeRouter,
+    ...ListFoodRouter,
+    ...SelectFoodRouter
 },{
     initialRouteName: LOGIN,
     navigationOptions: ({navigation}) => ({

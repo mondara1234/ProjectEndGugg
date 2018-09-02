@@ -1,53 +1,88 @@
 import React from 'react';
-import { Container, Content, Thumbnail, Item, Input, Text} from 'native-base';
-import {View, TouchableHighlight} from 'react-native';
-import HeaderLeftMenu from '../components/HeaderLeftMenu';
+import { View, StyleSheet, ImageBackground, Dimensions, Text } from 'react-native';
+import { Container } from 'native-base';
+import MenuItem from '../components/MenuItem';
+import {HISTORY_SCREEN} from "../../history/router";
+import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
+import {LIST_FOOD_SCREEN} from "../../listFood/router";
 
 class DashboardScreen extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {text: ''};
-    }
+
     render() {
         return (
-            <Container style={{backgroundColor:'#fe2526' }}>
-                <Content>
-                    <View style={{flex:1}}>
-                        <View style={{justifyContent:'center',flexDirection:'row',marginTop:30}}>
-                            <Thumbnail
-                                style={{height:300,width:300,borderRadius:100}}
-                                source={{ uri: 'https://media.giphy.com/media/8Lc5xmvzRhlLy/giphy.gif' }} />
+            <Container>
+                <ImageBackground
+                    source={require('../../../../pulic/assets/images/Boruto.jpg')}
+                    style={styles.container}
+                >
+                    <View style={styles.overlayContainer}>
+                        <View style={styles.top}>
+                            <Text style={styles.header}> {"H O M E"} </Text>
                         </View>
-                        <View style={{justifyContent:'center',flexDirection:'row',marginTop:30,marginBottom:10}}>
-                            <Text style={{fontSize:25,fontWeight:'400'}}> Wecome </Text>
+                        <View style={styles.menuContainer}>
+                            <MenuItem
+                                itemImage={require('../../../../pulic/assets/images/Search.png')}
+                                onPress={() => {this.props.navigation.navigate( 'SELECT_FOOD_SCREEN' )}}
+                            />{/*ค้นหาด้วยการกรอกชื่ออาหาร*/}
+                            <MenuItem
+                                itemImage={require('../../../../pulic/assets/images/Scanner.png')}
+                                onPress={() => {this.props.navigation.navigate( 'SCANQR_SCREEN' )}}
+                            />{/*สแกนอาหารแล้วบอก calorie เป็นข้อความพร้อมเสียง*/}
+                            <MenuItem
+                                itemImage={require('../../../../pulic/assets/images/List.jpg')}
+                                onPress={() => {this.props.navigation.navigate( 'LIST_FOOD_SCREEN' )}}
+                            />{/*แสดงรายการอาหารทั้งหมดแบบ List*/}
+                            <MenuItem
+                                itemImage={require('../../../../pulic/assets/images/History.png')}
+                                onPress={() => {this.props.navigation.navigate( 'HISTORY_SCREEN' )}}
+                            />{/*ประวัติการใช้งาน ในแต่ละวัน*/}
                         </View>
-                        <Item rounded
-                              style={{backgroundColor:'white',margin:20,marginLeft:20}}>
-                            <Input
-                                placeholder="Search In Here"
-                                placeholderTextColor='#D5D8DC'
-                                returnKeyType = {"done"}
-                                onChangeText={(value) => {this.setState({text: value})}}
-                                value={this.state.text}
-                            />
-
-                            <TouchableHighlight
-                                style={{height:50,width:80,backgroundColor:'#F4D03F',
-                                    justifyContent:'center',flexDirection:'row',
-                                    alignItems:'center',borderRadius:25}} >
-                                <Text style={{fontSize:25,fontWeight:'500'}}>{'Click'}</Text>
-                            </TouchableHighlight>
-                        </Item>
                     </View>
-                </Content>
+                </ImageBackground>
             </Container>
         );
     }
 }
 
 DashboardScreen.navigationOptions  = ({navigation}) => ({
-    headerTitle: <Text> {'Home'} </Text>,
-    headerLeft: <HeaderLeftMenu onPress={() => navigation.openDrawer()} />
+    header: null
+});
+
+const windows = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: windows.width,
+        height: windows.height
+    },
+    overlayContainer: {
+        flex: 1,
+        backgroundColor: 'rgba(47, 163, 218, 0.4)'
+    },
+    top: {
+        height: '50%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    header: {
+        color: 'rgba(255, 255, 255, 0.9)',
+        fontSize: 30,
+        borderColor: '#fff',
+        borderWidth: 2,
+        paddingHorizontal: 40,
+        paddingVertical: 20,
+        backgroundColor: 'rgba(255, 55, 255, 0.1)'
+    },
+    menuContainer: {
+        height: '60%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center'
+
+    }
+
 });
 
 export default DashboardScreen;

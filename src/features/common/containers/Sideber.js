@@ -6,6 +6,9 @@ import { Container, Content, H3, Left, Thumbnail, Right } from 'native-base';
 import { Alert, TouchableOpacity, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './SideMenu.style';
+import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
+import {HISTORY_SCREEN} from "../../history/router";
+import {LIST_FOOD_SCREEN} from "../../listFood/router";
 
 class Sideber extends React.Component {
     constructor(props) {
@@ -80,29 +83,11 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={styles.listItem}
                             onPress={() => {
-                                navigate('QRCODE_SCREEN')
+                                navigate('SELECT_FOOD_SCREEN')
                             }}
                         >
-                            <Icon style={styles.listItemIcon} name="envelope" />
-                            <Text style={styles.styleNameicon}> {'กล่องข้อความ'} </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.listItem}
-                            onPress={() => {
-                                navigate('QRCODE_SCREEN')
-                            }}
-                        >
-                            <Icon style={styles.listItemIcon} name="list" />
-                            <Text style={styles.styleNameicon}> {'List'} </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.listItem}
-                            onPress={() => {
-                                navigate('QRCODE_SCREEN')
-                            }}
-                        >
-                            <Icon style={styles.listItemIcon} name="location-arrow" />
-                            <Text style={styles.styleNameicon}> {'Map'} </Text>
+                            <Icon style={styles.listItemIcon} name="search" />
+                            <Text style={styles.styleNameicon}> {'ค้นหาอาหาร'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
@@ -112,6 +97,24 @@ class Sideber extends React.Component {
                         >
                             <Icon style={styles.listItemIcon} name="camera" />
                             <Text style={styles.styleNameicon}> {'สแกนQRcode'} </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.listItem}
+                            onPress={() => {
+                                navigate('LIST_FOOD_SCREEN')
+                            }}
+                        >
+                            <Icon style={styles.listItemIcon} name="list" />
+                            <Text style={styles.styleNameicon}> {'List'} </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.listItem}
+                            onPress={() => {
+                                navigate('HISTORY_SCREEN')
+                            }}
+                        >
+                            <Icon style={styles.listItemIcon} name="history" />
+                            <Text style={styles.styleNameicon}> {'ประวัติการใช้งาน'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listItem}
