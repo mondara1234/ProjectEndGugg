@@ -1,7 +1,7 @@
 import React from 'react';
 import { YellowBox, AppRegistry } from 'react-native'
 import { nameProject as AppGugg } from './app.json';
-import App from './src/app';
+import App from './src/features/selectFood/screen/SelectFoodScreen';
 
 const ProjectEnd = () => <App />;
 

@@ -19,7 +19,7 @@ class LoingScreen extends Component {
         const { UserEmail }  = this.state ;
         const { UserPassword }  = this.state ;
 
-        fetch('http://localhost/My_SQL/User_Login.php', {
+        fetch('http://192.168.1.28/My_SQL/User_Login.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -33,7 +33,7 @@ class LoingScreen extends Component {
             .then((responseJson) => {
                 if(responseJson === 'Data Matched')
                 {
-                    this.props.navigation.navigate('DASHBOARD' );
+                    this.props.navigation.navigate( 'DASHBOARD' );
                 }
                 else{
                     Alert.alert(responseJson);
@@ -44,7 +44,7 @@ class LoingScreen extends Component {
     };
 
       RegistrationFunction = () =>{
-        this.props.navigation.navigate( 'REGISTRATION');
+        this.props.navigation.navigate('REGISTRATION');
     };
 
     render() {

@@ -42,7 +42,7 @@ class Sideber extends React.Component {
                                     style={styles.styleImage}
                                 />
                             </Left>
-                            <Right>
+                            <Right badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}>
                                 <Text style={styles.styleUser}> {'first_name'}   {'last_name'} </Text>
                                 <Text style={styles.styleUser}> {'กำลังใช้งาน'} </Text>
                             </Right>
