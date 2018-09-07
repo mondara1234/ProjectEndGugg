@@ -4,7 +4,7 @@ import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter } from '../features/common/router';
 import { historyRouter } from "../features/history/router";
 import { ListFoodRouter } from "../features/listFood/router";
-import { SelectFoodRouter } from "../features/selectFood/router";
+import {SelectFoodRouter, SELECT_FOOD_SCREEN} from "../features/selectFood/router";
 import { UserRouter, LOGIN } from '../features/User/router';
 import { qrcodeRouter } from '../features/qrcodeScanner/router';
 import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
@@ -19,7 +19,7 @@ export const RootStack = StackNavigator({
     ...ListFoodRouter,
     ...SelectFoodRouter
 },{
-    initialRouteName: LOGIN,
+    initialRouteName: SELECT_FOOD_SCREEN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),

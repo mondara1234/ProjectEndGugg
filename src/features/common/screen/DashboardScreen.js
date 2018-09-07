@@ -22,19 +22,19 @@ class DashboardScreen extends React.Component {
                         <View style={styles.menuContainer}>
                             <MenuItem
                                 itemImage={require('../../../../pulic/assets/images/Search.png')}
-                                onPress={() => {this.props.navigation.navigate( 'SELECT_FOOD_SCREEN' )}}
+                                onPress={() => this.props.navigation.navigate( 'SELECT_FOOD_SCREEN' )}
                             />{/*ค้นหาด้วยการกรอกชื่ออาหาร*/}
                             <MenuItem
                                 itemImage={require('../../../../pulic/assets/images/Scanner.png')}
-                                onPress={() => {this.props.navigation.navigate( 'SCANQR_SCREEN' )}}
+                                onPress={() => this.props.navigation.navigate( 'SCANQR_SCREEN' )}
                             />{/*สแกนอาหารแล้วบอก calorie เป็นข้อความพร้อมเสียง*/}
                             <MenuItem
                                 itemImage={require('../../../../pulic/assets/images/List.jpg')}
-                                onPress={() => {this.props.navigation.navigate( 'LIST_FOOD_SCREEN' )}}
+                                onPress={() => this.props.navigation.navigate( 'LIST_FOOD_SCREEN' )}
                             />{/*แสดงรายการอาหารทั้งหมดแบบ List*/}
                             <MenuItem
                                 itemImage={require('../../../../pulic/assets/images/History.png')}
-                                onPress={() => {this.props.navigation.navigate( 'HISTORY_SCREEN' )}}
+                                onPress={() => this.props.navigation.navigate( 'HISTORY_SCREEN' )}
                             />{/*ประวัติการใช้งาน ในแต่ละวัน*/}
                         </View>
                     </View>

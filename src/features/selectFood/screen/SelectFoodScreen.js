@@ -5,8 +5,9 @@ import { List, ListItem, SearchBar } from "react-native-elements";
 import { getUsers, contains } from "./api/index";
 import CommonText from '../../common/components/CommonText';
 import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
+import { FOOD_SHOW_DETAIL_SCREEN } from "../router";
 
-class SelectFoodScreen extends React.PureComponent {
+class SelectFoodScreen extends React.Component {
     constructor(props) {
         super(props);
 
@@ -63,14 +64,17 @@ class SelectFoodScreen extends React.PureComponent {
         );
     };
 
-    //คำสั่งค้นหาฐานข้อมูลโดยเช้ดจากชื่อ
-    mondara = (item) => {
-        if(item.name.first === 'eva') {
-            alert('olooooooo')
-        }else{
-            alert(item.name.first)
-        }
-    };
+    buttonPress(item) {
+        const nameFood = item.email;
+        console.log('called',nameFood);
+        {this.props.navigation.navigate({
+            routeName: 'FOOD_SHOW_DETAIL_SCREEN' ,
+            params: {
+                data: nameFood,
+                otherParam: 'อื่นๆ'
+            }
+        })}
+    }
 
     render() {
         console.log('text:' + this.state.query );
@@ -96,7 +100,7 @@ class SelectFoodScreen extends React.PureComponent {
                                 subtitle={item.email}
                                 avatar={{ uri: item.picture.thumbnail }}
                                 containerStyle={{ borderBottomWidth: 0, backgroundColor: '#373a31'}}
-                                onPressRightIcon={() => this.mondara(item)}
+                                onPressRightIcon={(item) => this.buttonPress(item)}
                                 badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
                             />
                         )}
@@ -107,7 +111,6 @@ class SelectFoodScreen extends React.PureComponent {
         );
     }
 }
-
 
 SelectFoodScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'ค้นหาอาหาร'} />,
