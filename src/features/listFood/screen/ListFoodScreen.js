@@ -9,7 +9,7 @@ class ListFoodScreen extends React.PureComponent {
     render() {
         return (
             <Container>
-                <Text style={{fontSize: 40}}>{'แสดงรายการอาหารทั้งหมดแบบ List'}</Text>
+                <Text style={{fontSize: 40}}>{'แสดงรายการอาหารทั้งหมดแบบ List ให้ Admint แก้ไขได้s'}</Text>
             </Container>
         );
     }

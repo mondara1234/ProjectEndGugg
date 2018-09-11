@@ -24,13 +24,11 @@ MenuItem.defaultProps = {
 
 const styles = StyleSheet.create({
     containerMenu: {
-        width: '40%',
-        height: '40%',
-        padding: 20
+        paddingHorizontal: 30
     },
     image: {
-        width: '100%',
-        height: '100%',
+        width: 80,
+        height: 80,
         borderColor: '#fff',
         borderWidth: 3
     }

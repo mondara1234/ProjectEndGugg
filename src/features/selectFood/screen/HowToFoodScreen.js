@@ -20,11 +20,11 @@ class HowToFoodScreen extends React.Component{
                         />
                         <View style={styles.containerText}>
                             <CommonText text={'ชื่อ :'} />
-                            <CommonText text={data} />
+                            <CommonText text={data.name} />
                         </View>
                         <View style={styles.containerText}>
                             <CommonText text={'จำนวน แคลลอรี่ :'} />
-                            <CommonText text={'300'} />
+                            <CommonText text={data.calorie} />
                         </View>
                         <View style={styles.containerText}>
                             <CommonText text={'รายละอียด :'} />
@@ -46,7 +46,6 @@ class HowToFoodScreen extends React.Component{
 
 HowToFoodScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'ขั้นตอนการทำอาหาร'} />,
-    headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
 });
 
 const styles = StyleSheet.create({

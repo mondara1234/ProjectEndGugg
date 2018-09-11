@@ -65,12 +65,11 @@ class SelectFoodScreen extends React.Component {
     };
 
     buttonPress(item) {
-        const nameFood = item.email;
-        console.log('called',nameFood);
+        console.log('called',item);
         {this.props.navigation.navigate({
             routeName: 'FOOD_SHOW_DETAIL_SCREEN' ,
             params: {
-                data: nameFood,
+                data: item,
                 otherParam: 'อื่นๆ'
             }
         })}
@@ -97,14 +96,14 @@ class SelectFoodScreen extends React.Component {
                                 title={`${item.name.first} ${item.name.last}`}
                                 titleStyle={{ color: 'white', fontWeight: 'bold' }}
                                 subtitleStyle={{ color: 'white' }}
-                                subtitle={item.email}
+                                subtitle={item.calorie}
                                 avatar={{ uri: item.picture.thumbnail }}
                                 containerStyle={{ borderBottomWidth: 0, backgroundColor: '#373a31'}}
                                 onPressRightIcon={(item) => this.buttonPress(item)}
                                 badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
                             />
                         )}
-                        keyExtractor={item => item.email}
+                        keyExtractor={item => item.calorie}
                         ItemSeparatorComponent={this.renderSeparator}
                     />
             </View>

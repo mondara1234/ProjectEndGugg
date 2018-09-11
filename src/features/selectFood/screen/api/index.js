@@ -1,9 +1,9 @@
 import _ from "lodash";
 import users from "./users";
 
- export const contains = ({ name, email }, query) => {
+ export const contains = ({ name, calorie }, query) => {
   const { first, last } = name;
-  if (first.includes(query) || last.includes(query) || email.includes(query)) {
+  if (first.includes(query) || last.includes(query) || calorie.includes(query)) {
     return true;
   }
 

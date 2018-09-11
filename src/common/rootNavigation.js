@@ -1,7 +1,7 @@
 import React from 'react';
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
-import { CommonRouter } from '../features/common/router';
+import { CommonRouter, DASHBOARD } from '../features/common/router';
 import { historyRouter } from "../features/history/router";
 import { ListFoodRouter } from "../features/listFood/router";
 import {SelectFoodRouter, SELECT_FOOD_SCREEN} from "../features/selectFood/router";
@@ -19,7 +19,7 @@ export const RootStack = StackNavigator({
     ...ListFoodRouter,
     ...SelectFoodRouter
 },{
-    initialRouteName: SELECT_FOOD_SCREEN,
+    initialRouteName: DASHBOARD,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),

@@ -21,11 +21,11 @@ class FoodShowDetailScreen extends React.Component{
                         />
                         <View style={styles.containerText}>
                             <CommonText text={'ชื่อ :'} />
-                            <CommonText text={data} />
+                            <CommonText text={data.name} />
                         </View>
                         <View style={styles.containerText}>
                             <CommonText text={'จำนวน แคลลอรี่ :'} />
-                            <CommonText text={'300'} />
+                            <CommonText text={data.calorie} />
                         </View>
                         <View style={styles.containerText}>
                             <CommonText text={'รายละอียด :'} />
@@ -53,7 +53,6 @@ class FoodShowDetailScreen extends React.Component{
 
 FoodShowDetailScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'รายละเอียด'} />,
-    headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
 });
 
 const styles = StyleSheet.create({
