@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {NavigationActions} from 'react-navigation';
 import { styles as s } from 'react-native-style-tachyons';
 import { Container, Content, H3, Left, Thumbnail, Right } from 'native-base';
@@ -9,15 +10,33 @@ import styles from './SideMenu.style';
 import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
 import {HISTORY_SCREEN} from "../../history/router";
 import {LIST_FOOD_SCREEN} from "../../listFood/router";
+import SelectFoodScreen from '../../selectFood/screen/SelectFoodScreen';
+import DashboardScreen from '../screen/DashboardScreen';
 
 class Sideber extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+           screebSideber: 'home'
+        };
     }
+
+
+    componentDidUpdate(prevProps, prevState) {
+        // One possible fix...
+
+        const selectScreen = new SelectFoodScreen().state.select;
+        if (this.state.screebSideber !== selectScreen ) {
+            this.setState({ screebSideber: selectScreen });
+        }
+    }
+
 
     render () {
         const { navigate } = this.props.navigation;
 
+        console.log('screen', this.state.screebSideber);
         return (
             <Container>
                 <Content>
@@ -63,63 +82,70 @@ class Sideber extends React.Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'home' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('DASHBOARD')
+                                navigate('DASHBOARD');
+                                this.setState({ screebSideber: 'home' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="home" />
                             <Text style={styles.styleNameicon}> {'หน้าหลัก'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QR' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('QRCODE_SCREEN')
+                                navigate('QRCODE_SCREEN');
+                                this.setState({ screebSideber: 'QR' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="user" />
                             <Text style={styles.styleNameicon}> {'User'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'select' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('SELECT_FOOD_SCREEN')
+                                navigate('SELECT_FOOD_SCREEN');
+                                this.setState({ screebSideber: 'select' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="search" />
                             <Text style={styles.styleNameicon}> {'ค้นหาอาหาร'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'SCANQR' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('SCANQR_SCREEN')
+                                navigate('SCANQR_SCREEN');
+                                this.setState({ screebSideber: 'SCANQR' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="camera" />
                             <Text style={styles.styleNameicon}> {'สแกนQRcode'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'LIST' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('LIST_FOOD_SCREEN')
+                                navigate('LIST_FOOD_SCREEN');
+                                this.setState({ screebSideber: 'LIST' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="list" />
                             <Text style={styles.styleNameicon}> {'List'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'HISTORY' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('HISTORY_SCREEN')
+                                navigate('HISTORY_SCREEN');
+                                this.setState({ screebSideber: 'HISTORY' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="history" />
                             <Text style={styles.styleNameicon}> {'ประวัติการใช้งาน'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QRCODE' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('QRCODE_SCREEN')
+                                navigate('QRCODE_SCREEN');
+                                this.setState({ screebSideber: 'QRCODE' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="qrcode" />

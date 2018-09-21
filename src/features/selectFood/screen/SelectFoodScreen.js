@@ -16,7 +16,8 @@ class SelectFoodScreen extends React.Component {
             data: [],
             error: null,
             query: '',
-            fullData: []
+            fullData: [],
+            select: 'select'
         };
     }
 
@@ -110,7 +111,6 @@ class SelectFoodScreen extends React.Component {
         );
     }
 }
-
 SelectFoodScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'ค้นหาอาหาร'} />,
     headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
