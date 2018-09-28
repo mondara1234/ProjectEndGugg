@@ -1,20 +1,25 @@
 import React from 'react';
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
-import { CommonRouter } from '../features/common/router';
-import { CheckinmapRouter } from '../features/check-in-map/router';
+import { CommonRouter, DASHBOARD } from '../features/common/router';
+import { historyRouter } from "../features/history/router";
+import { ListFoodRouter, LIST_FOOD_SCREEN } from "../features/listFood/router";
+import {SelectFoodRouter, SELECT_FOOD_SCREEN} from "../features/selectFood/router";
 import { UserRouter, LOGIN } from '../features/User/router';
-import { qrcodeRouter, SCANQR_SCREEN } from '../features/qrcodeScanner/router';
+import { qrcodeRouter } from '../features/qrcodeScanner/router';
 import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
 import {Dimensions} from "react-native";
+import {createReduxBoundAddListener} from "react-navigation-redux-helpers";
 
 export const RootStack = StackNavigator({
     ...CommonRouter,
-    ...CheckinmapRouter,
+    ...historyRouter,
     ...UserRouter,
-    ...qrcodeRouter
+    ...qrcodeRouter,
+    ...ListFoodRouter,
+    ...SelectFoodRouter
 },{
-    initialRouteName: SCANQR_SCREEN,
+    initialRouteName: LOGIN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),
@@ -36,10 +41,14 @@ const RootDrawer = DrawerNavigator(
     }
 );
 
-export const RootNavigation = StackNavigator({
+export const RootNavigator = StackNavigator({
     Drawer: { screen: RootDrawer },
 }, {
     headerMode: 'none',
 });
 
-export default RootNavigation;
+
+
+
+
+export default RootNavigator;

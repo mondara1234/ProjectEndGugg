@@ -1,17 +1,47 @@
 import initialState from './initialState';
+import * as actionTypes from '../redux/actions';
+import {FETCHDATA, FETCH_FLIGHT, ADDDATA_COUNTER, ROUTE_START} from './constants';
 
-const reducers = [
-
-];
-
-export default function reducer(state = initialState, action = {}) {
-    let newState;
+const reducer = (state = initialState, action) => {
     switch (action.type) {
-        // Handle cross-topic actions here
+        case "RECEIVE":
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                data: action.payload
+            };
+        case "ERROR":
+            return {
+                ...state,
+                fetching: false,
+                data: action.payload
+            };
+        case ADDDATA_COUNTER:
+            return {
+                ...state,
+                data: action.payload,
+                loading: false
+            };
+        case FETCHDATA:
+            return {
+                ...state,
+                loading: true
+            };
+        case FETCH_FLIGHT:
+            return {
+                ...state,
+                data: action.json,
+                loading: false
+            };
+        case ROUTE_START:
+            return {
+                ...state,
+                routeName: action.payload
+            };
         default:
-            newState = state;
-            break;
+            return state;
     }
-    /* istanbul ignore next */
-    return reducers.reduce((s, r) => r(s, action), newState);
-}
+};
+
+export default reducer;

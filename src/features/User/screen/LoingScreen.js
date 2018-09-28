@@ -1,50 +1,39 @@
 import React, { Component } from 'react';
 import {StyleSheet, Alert, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
+import { requestApiData } from "../redux/actions";
 import Logo from '../components/Logo';
+import {getNews, getAllFlights} from '../redux/actions';
+import * as API from '../api/api';
 
 class LoingScreen extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             UserEmail: '',
             UserPassword: ''
         }
     }
 
-    UserLoginFunction = () =>{
-        const { UserEmail }  = this.state ;
-        const { UserPassword }  = this.state ;
-
-        fetch('http://192.168.1.33/My_SQL/User_Login.php', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: UserEmail,
-                password: UserPassword
-            })
-        }).then((response) => response.json())
-            .then((responseJson) => {
-                if(responseJson === 'Data Matched')
-                {
-                    this.props.navigation.navigate('DASHBOARD' );
-                }
-                else{
-                    Alert.alert(responseJson);
-                }
-            }).catch((error) => {
-            console.error(error);
-        });
+    componentDidMount(){
+        this.props.FETCH_DATA();
     }
+
+    UserLoginFunction = () =>{
+        const Email = this.state.UserEmail ;
+        const Password = this.state.UserPassword ;
+        const keyScreen = this.props.navigation;
+        this.props.Flights_DATA(Email,Password , keyScreen);
+    };
 
       RegistrationFunction = () =>{
-        this.props.navigation.navigate( 'REGISTRATION');
-    }
+        this.props.navigation.navigate('REGISTRATION');
+    };
 
     render() {
-        console.log(this.props);
+            console.log('Update Store:',this.props);
         return (
             <View style={styles.container}>
                 <Logo Title="WECOME MyAPP"/>
@@ -137,4 +126,17 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoingScreen;
+function mapStateToProps(state) {
+    return{
+        servers: state.data
+};
+}
+
+export default connect(mapStateToProps,
+    (dispatch) => ({
+        navigationActions: bindActionCreators(NavigationActions, dispatch),
+        FETCH_DATA: bindActionCreators(getNews, dispatch),
+        Flights_DATA: bindActionCreators(API.fetchTodo, dispatch),
+    })
+)(LoingScreen);
+

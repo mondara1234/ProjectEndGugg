@@ -1,26 +1,45 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {NavigationActions} from 'react-navigation';
 import { styles as s } from 'react-native-style-tachyons';
-import { Container, Content, H3,ListItem, Left, Thumbnail, Right, Body } from 'native-base';
+import { Container, Content, H3, Left, Thumbnail, Right } from 'native-base';
 import { Alert, TouchableOpacity, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './SideMenu.style';
-import { DASHBOARD } from '../router';
+import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
+import {HISTORY_SCREEN} from "../../history/router";
+import {LIST_FOOD_SCREEN} from "../../listFood/router";
+import SelectFoodScreen from '../../selectFood/screen/SelectFoodScreen';
+import DashboardScreen from '../screen/DashboardScreen';
+import {getNews} from "../../User/redux/actions";
+import {bindActionCreators} from "redux";
+import * as API from "../../User/api/api";
+import {connect} from "react-redux";
 
 class Sideber extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+           screebSideber: ''
+        };
     }
 
-    navigateToScreen = (route) => () => {
-        const navigateAction = NavigationActions.navigate({
-            routeName: route
-        });
-        this.props.navigation.dispatch(navigateAction);
+
+    componentDidUpdate(prevProps, prevState) {
+        // One possible fix...
+        const routeName = this.props.routerName;
+        if (this.state.screebSideber !== routeName ) {
+            this.setState({ screebSideber: routeName });
+        }
     }
+
 
     render () {
+        const { navigate } = this.props.navigation;
+
+        console.log('screen', this.state.screebSideber);
         return (
             <Container>
                 <Content>
@@ -45,7 +64,7 @@ class Sideber extends React.Component {
                                     style={styles.styleImage}
                                 />
                             </Left>
-                            <Right>
+                            <Right badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}>
                                 <Text style={styles.styleUser}> {'first_name'}   {'last_name'} </Text>
                                 <Text style={styles.styleUser}> {'กำลังใช้งาน'} </Text>
                             </Right>
@@ -58,7 +77,7 @@ class Sideber extends React.Component {
                             <Icon
                                 style={styles.managerIcon}
                                 name="user"
-                                size={33} c
+                                size={33}
                                 olor={'white'}
                             />
                             <View style={s.ml3}>
@@ -66,63 +85,63 @@ class Sideber extends React.Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'DASHBOARD' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                this.props.navigateToScreen('DASHBOARD')
+                                navigate('DASHBOARD');
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="home" />
                             <Text style={styles.styleNameicon}> {'หน้าหลัก'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QR' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                this.props.navigateToScreen(DASHBOARD)
+                                navigate('QRCODE_SCREEN');
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="user" />
                             <Text style={styles.styleNameicon}> {'User'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'SELECT_FOOD_SCREEN' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('SELECT_FOOD_SCREEN');
                             }}
                         >
-                            <Icon style={styles.listItemIcon} name="envelope" />
-                            <Text style={styles.styleNameicon}> {'กล่องข้อความ'} </Text>
+                            <Icon style={styles.listItemIcon} name="search" />
+                            <Text style={styles.styleNameicon}> {'ค้นหาอาหาร'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'SCANQR' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('SCANQR_SCREEN');
+                            }}
+                        >
+                            <Icon style={styles.listItemIcon} name="camera" />
+                            <Text style={styles.styleNameicon}> {'สแกนQRcode'} </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'LIST' ? 'rgba(111, 165, 255, 0.5)' : null}]}
+                            onPress={() => {
+                                navigate('LIST_FOOD_SCREEN');
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="list" />
                             <Text style={styles.styleNameicon}> {'List'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'HISTORY' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('HISTORY_SCREEN');
                             }}
                         >
-                            <Icon style={styles.listItemIcon} name="location-arrow" />
-                            <Text style={styles.styleNameicon}> {'Map'} </Text>
+                            <Icon style={styles.listItemIcon} name="history" />
+                            <Text style={styles.styleNameicon}> {'ประวัติการใช้งาน'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.listItem}
+                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QRCODE' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
-                            }}
-                        >
-                            <Icon style={styles.listItemIcon} name="calendar" />
-                            <Text style={styles.styleNameicon}> {'เวลา'} </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.listItem}
-                            onPress={() => {
-                                this.props.navigateToScreen({ routeName: DASHBOARD })
+                                navigate('QRCODE_SCREEN');
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="qrcode" />
@@ -153,4 +172,15 @@ class Sideber extends React.Component {
     }
 }
 
-export default Sideber;
+function mapStateToProps(state) {
+    return{
+        routerName : state.routeName
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    (dispatch) => ({
+        Flights_DATA: bindActionCreators(API.fetchTodo, dispatch),
+    })
+)(Sideber);

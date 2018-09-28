@@ -1,18 +1,25 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { StatusBar } from 'react-native';
+import { StatusBar, YellowBox } from 'react-native';
 import { StyleProvider, Root } from 'native-base';
 import ThemeVariables from '../native-base-theme/variables/platform';
 import RootNavigation from './common/rootNavigation';
 import getTheme from '../native-base-theme/components';
-import AllReducer from "../components/reducers";
-import {createStore} from "redux";
+import { createStore, applyMiddleware } from "redux"
+import thunk from 'redux-thunk';
+import reducer from "./features/User/redux/reducer";
+import axios from 'axios';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from "../src/features/User/redux/sagas";
 
-export  const store = createStore(AllReducer);
+const sagaMiddleware = createSagaMiddleware();
+const Middleware = applyMiddleware(sagaMiddleware, thunk);
+const store = createStore(reducer, Middleware);
 
-console.log(store);
+sagaMiddleware.run(rootSaga);
 
-class App extends React.PureComponent{
+class App extends React.Component{
+
     render() {
         return (
             <StyleProvider style={getTheme(ThemeVariables)}>
@@ -29,4 +36,5 @@ class App extends React.PureComponent{
         );
     }
 }
+
 export default App;

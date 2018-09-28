@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles as s } from 'react-native-style-tachyons';
 
@@ -29,7 +29,6 @@ CommonText.defaultProps = {
     size: 24,
     color: s.black,
     text: '',
-    style: {}
 };
 
 export default CommonText;

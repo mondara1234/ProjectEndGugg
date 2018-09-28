@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { StyleSheet,Text,TextInput,View,Button} from 'react-native';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {counterIncrement, counterDecrement, counterClear, counterSet,countermodara} from './actions/index';
+import {counterIncrement, counterDecrement, counterClear, counterSet,countermodara, getNews, getAllFlights} from './actions/index';
 
 class Testcount extends Component{
     constructor(props){
@@ -18,17 +18,47 @@ class Testcount extends Component{
         this.props.SET_COUNTER(count);
         this.setState({count});
     }
+    onClear(){
+        this.props.CLEAR_COUNTER();
+        this.setState({count : ''});
+    }
+
+    testIMG(){
+        let cars = ["icon", "logo1", "user"];
+        let text = "";
+        let i;
+        for (i = 0; i < cars.length; i++) {
+            text += cars[i] + '\n';//+= เอาค่ามารวมกันยาวๆ
+        }
+        console.log(text);
+    }
+    testText(){
+        let cars = ["icon", "logo1", "user"];
+        let text = "";
+        let i;
+        for (i = 0; i < cars.length; i++) {
+            text = cars[i]; //= เอามาทีละค่า
+            this.props.ADDDATA_COUNTER(text)
+        }
+        console.log(text);
+    }
+
+    componentDidMount(){
+       this.props.FETCH_DATA();
+        }
 
         render(){
         console.log(this.props);
         const {container, countViewStyle, welcome, instructions} = styles;
         const data = this.props.server.serverdataSource[0];
         const data1 = this.props.server.serverdataSource[1];
+        const data2 = this.props.server.serverdataSource[2];
         return(
             <View style={container}>
-                <Button  onPress={()=>this.props.ADDDATA_COUNTER('kakzadsr')} title="ShowData"/>
+                <Button  onPress={()=>this.testText()} title="ShowData"/>
                 <Text style={welcome}>array[0]: {data}</Text>
                 <Text style={welcome}>array[1]: {data1}</Text>
+                <Text style={welcome}>array[2]: {data2}</Text>
                 <TextInput style={{width: 80, height:40, borderWidth:1}}
                            onChangeText={this.onChengeText}
                            value={this.state.count.toString()}
@@ -38,7 +68,7 @@ class Testcount extends Component{
                     <Text style={[welcome,{width: 80}]}> {this.props.count}</Text>
                     <Button  onPress={this.props.DECREMENT_COUNTER} title="-"/>
                 </View>
-                <Button  onPress={this.props.CLEAR_COUNTER} title="Clear"/>
+                <Button  onPress={this.onClear} title="Clear"/>
             </View>
 
 
@@ -51,7 +81,7 @@ const styles = StyleSheet.create({
        flex:1,
        justifyContent:"center",
        alignItems:"center",
-       backgroundColor:"#F5FCFF"
+       backgroundColor:"#97aeb0"
    },
     welcome:{
        fontSize: 20,
@@ -82,6 +112,8 @@ export default connect(mapStateToProps,
         INCRENENT_COUNTER: bindActionCreators(counterIncrement, dispatch),
         DECREMENT_COUNTER: bindActionCreators(counterDecrement, dispatch),
         CLEAR_COUNTER: bindActionCreators(counterClear, dispatch),
-        SET_COUNTER: bindActionCreators(counterSet, dispatch)
+        SET_COUNTER: bindActionCreators(counterSet, dispatch),
+        FETCH_DATA: bindActionCreators(getNews, dispatch),
+        Flights_DATA: bindActionCreators(getAllFlights, dispatch),
     })
 )(Testcount);

@@ -1,33 +1,13 @@
 
-import {CLEAR_COUNTER, ADDDATA_COUNTER} from "../actions/TypesActions";
-
-this.state = {
-    dataSource: [],
-    isLoading: true
-};
-
-InsertStudentRecordsToServer = () =>{
-    fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            this.setState({
-                isLoading: false,
-                dataSource: responseJson
-            }, function() {
-            });
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-};
+import {CLEAR_COUNTER, ADDDATA_COUNTER, FETCHDATA, FETCH_FLIGHT} from "../actions/TypesActions";
 
 const initialState={
-    serverdataSource: this.state.dataSource
+    serverdataSource: [],
+    value: 0,
+    loading: false
 };
 
-console.log(this.state.dataSource);
-
-export default (state=initialState,action)=>{
+export default (state = initialState,action)=>{
     switch (action.type){
         case ADDDATA_COUNTER:
             return state={//ใช้สำหรับมีข้อมูลเยอะ สามารเลิกค่าที่ต้องเปลี่ยนได้
@@ -38,6 +18,15 @@ export default (state=initialState,action)=>{
             return state={//ใช้สำหรับมีข้อมูลเยอะ สามารเลิกค่าที่ต้องเปลี่ยนได้
                 ...state,
                 serverdataSource : []
+            };
+        case 'GET_NEWS':
+            return { ...state, loading: true };
+        case 'NEWS_RECEIVED':
+            return { ...state, serverdataSource: action.json, loading: false };
+        case FETCH_FLIGHT:
+            return state={//ใช้สำหรับมีข้อมูลเยอะ สามารเลิกค่าที่ต้องเปลี่ยนได้
+                ...state,
+                serverdataSource : [...state.serverdataSource, action.payload.data]
             };
         default:
             return state;

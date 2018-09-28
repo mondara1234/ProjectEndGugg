@@ -15,7 +15,7 @@ class ShowListActivity extends Component {
     }
 
     componentDidMount() {
-        return fetch('http://192.168.1.33/My_SQL/ShowAllDataList.php')
+        return fetch('http://localhost/My_SQL/ShowAllDataList.php')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({

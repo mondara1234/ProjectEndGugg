@@ -1,59 +1,40 @@
 import React, { Component } from 'react';
-
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Linking,
-} from 'react-native';
-
+import { Linking, Dimensions }  from 'react-native';
+import Toast from 'react-native-simple-toast';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import QRScannerRectView from '../components/QRScannerRectView';
 
 class ScanQRScreen extends Component {
     onSuccess(e) {
-        Linking
-            .openURL(e.data)
-            .catch(err => console.error('An error occured', err));
+            Linking
+                .openURL(e.data)
+                .catch(
+                    Toast.show('Type: ' + e.type + '\nData: ' + e.data)
+                );
     }
 
     render() {
+
+        const SCREEN_HEIGHT = Dimensions.get("window").height;
         return (
             <QRCodeScanner
-                onRead={this.onSuccess.bind(this)}
-                topContent={
-                    <Text style={styles.centerText}>
-                        Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
-                    </Text>
-                }
-                bottomContent={
-                    <TouchableOpacity style={styles.buttonTouchable}>
-                        <Text style={styles.buttonText}>OK. Got it!</Text>
-                    </TouchableOpacity>
+                onRead={this.onSuccess}
+                cameraStyle={{ height: SCREEN_HEIGHT }}
+                showMarker={true}
+                customMarker={
+                    <QRScannerRectView
+                        rectHeight={200}
+                        cornerOffsetSize={0}
+                        isCornerOffset={false}
+                    />
                 }
             />
         );
     }
 }
 
-const styles = StyleSheet.create({
-    centerText: {
-        flex: 1,
-        fontSize: 18,
-        padding: 32,
-        color: '#777',
-    },
-    textBold: {
-        fontWeight: '500',
-        color: '#000',
-    },
-    buttonText: {
-        fontSize: 21,
-        color: 'rgb(0,122,255)',
-    },
-    buttonTouchable: {
-        padding: 16,
-    },
+ScanQRScreen.navigationOptions  = ({navigation}) => ({
+    header: null
 });
 
 export default ScanQRScreen;

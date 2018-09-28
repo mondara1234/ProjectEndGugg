@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Logo from '../components/Logo';
 import FormEdit from './FormScreen/FormEdit';
 import FormUpdate from './FormScreen/FormUpdate';
@@ -7,7 +7,7 @@ import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 
 class EditData extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             TextInput_ID: ''
         }

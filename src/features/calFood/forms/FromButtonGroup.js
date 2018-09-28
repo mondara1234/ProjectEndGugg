@@ -4,15 +4,15 @@ import {ButtonGroup} from 'react-native-elements';
 
 class FormButtonGroup extends React.PureComponent {
     constructor () {
-        super()
+        super();
         this.state = {
             selectedIndex: 3
 
-        }
+        };
         this.updateIndex = this.updateIndex.bind(this)
     }
     updateIndex (selectedIndex) {
-        this.setState({selectedIndex})
+        this.setState({selectedIndex});
         Alert.alert(
             'Alert Title',
             'INBITZTH',
@@ -29,7 +29,7 @@ class FormButtonGroup extends React.PureComponent {
 
     render() {
         const buttons = [{ element: component1 }, { element: component2 }, { element: component3 }]
-        const { selectedIndex } = this.state
+        const { selectedIndex } = this.state;
         return (
             <ButtonGroup
                 onPress={this.updateIndex}
