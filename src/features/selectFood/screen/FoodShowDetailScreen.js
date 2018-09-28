@@ -5,8 +5,16 @@ import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import CommonText from '../../common/components/CommonText';
 import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 import { HOW_TO_FOOD_SCREEN } from "../router";
+import {getNews, getRouteName} from "../../User/redux/actions";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
 class FoodShowDetailScreen extends React.Component{
+
+    componentDidMount() {
+        const screen = 'FOOD_SHOW_DETAIL_SCREEN';
+        this.props.RouteName(screen);
+    }
 
     render(){
         const { data, otherParam } = this.props.navigation.state.params;
@@ -85,4 +93,9 @@ const styles = StyleSheet.create({
 
 });
 
-export default FoodShowDetailScreen;
+export default connect(null,
+    (dispatch) => ({
+        FETCH_DATA: bindActionCreators(getNews, dispatch),
+        RouteName: bindActionCreators(getRouteName, dispatch),
+    })
+)(FoodShowDetailScreen);

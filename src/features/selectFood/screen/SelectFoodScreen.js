@@ -6,6 +6,10 @@ import { getUsers, contains } from "./api/index";
 import CommonText from '../../common/components/CommonText';
 import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 import { FOOD_SHOW_DETAIL_SCREEN } from "../router";
+import {getNews, getRouteName} from "../../User/redux/actions";
+import {bindActionCreators} from "redux";
+import * as API from "../../User/api/api";
+import {connect} from "react-redux";
 
 class SelectFoodScreen extends React.Component {
     constructor(props) {
@@ -23,6 +27,8 @@ class SelectFoodScreen extends React.Component {
 
     componentDidMount() {
         this.makeRemoteRequest();
+        const screen = 'SELECT_FOOD_SCREEN';
+        this.props.RouteName(screen);
     }
 
     //คำสั่งส่งค่าtextไปทำงานกับData
@@ -78,6 +84,8 @@ class SelectFoodScreen extends React.Component {
 
     render() {
         console.log('text:' + this.state.query );
+        console.log('navigation:',this.props.navigation.state.routeName);
+        console.log('key:',this.props.navigation.state.key);
         return (
             <View style={{flex:1}}>
                 <SearchBar
@@ -115,5 +123,15 @@ SelectFoodScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'ค้นหาอาหาร'} />,
     headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
 });
+function mapStateToProps(state) {
+    return{
+        servers: state.data
+    };
+}
 
-export default SelectFoodScreen;
+export default connect(mapStateToProps,
+    (dispatch) => ({
+        FETCH_DATA: bindActionCreators(getNews, dispatch),
+        RouteName: bindActionCreators(getRouteName, dispatch),
+    })
+)(SelectFoodScreen);

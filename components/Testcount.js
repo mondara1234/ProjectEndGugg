@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { StyleSheet,Text,TextInput,View,Button} from 'react-native';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {counterIncrement, counterDecrement, counterClear, counterSet,countermodara} from './actions/index';
+import {counterIncrement, counterDecrement, counterClear, counterSet,countermodara, getNews, getAllFlights} from './actions/index';
 
 class Testcount extends Component{
     constructor(props){
@@ -22,6 +22,7 @@ class Testcount extends Component{
         this.props.CLEAR_COUNTER();
         this.setState({count : ''});
     }
+
     testIMG(){
         let cars = ["icon", "logo1", "user"];
         let text = "";
@@ -41,6 +42,11 @@ class Testcount extends Component{
         }
         console.log(text);
     }
+
+    componentDidMount(){
+       this.props.FETCH_DATA();
+        }
+
         render(){
         console.log(this.props);
         const {container, countViewStyle, welcome, instructions} = styles;
@@ -106,6 +112,8 @@ export default connect(mapStateToProps,
         INCRENENT_COUNTER: bindActionCreators(counterIncrement, dispatch),
         DECREMENT_COUNTER: bindActionCreators(counterDecrement, dispatch),
         CLEAR_COUNTER: bindActionCreators(counterClear, dispatch),
-        SET_COUNTER: bindActionCreators(counterSet, dispatch)
+        SET_COUNTER: bindActionCreators(counterSet, dispatch),
+        FETCH_DATA: bindActionCreators(getNews, dispatch),
+        Flights_DATA: bindActionCreators(getAllFlights, dispatch),
     })
 )(Testcount);

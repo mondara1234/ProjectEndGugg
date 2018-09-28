@@ -12,23 +12,26 @@ import {HISTORY_SCREEN} from "../../history/router";
 import {LIST_FOOD_SCREEN} from "../../listFood/router";
 import SelectFoodScreen from '../../selectFood/screen/SelectFoodScreen';
 import DashboardScreen from '../screen/DashboardScreen';
+import {getNews} from "../../User/redux/actions";
+import {bindActionCreators} from "redux";
+import * as API from "../../User/api/api";
+import {connect} from "react-redux";
 
 class Sideber extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-           screebSideber: 'home'
+           screebSideber: ''
         };
     }
 
 
     componentDidUpdate(prevProps, prevState) {
         // One possible fix...
-
-        const selectScreen = new SelectFoodScreen().state.select;
-        if (this.state.screebSideber !== selectScreen ) {
-            this.setState({ screebSideber: selectScreen });
+        const routeName = this.props.routerName;
+        if (this.state.screebSideber !== routeName ) {
+            this.setState({ screebSideber: routeName });
         }
     }
 
@@ -82,10 +85,9 @@ class Sideber extends React.Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'home' ? 'rgba(111, 165, 255, 0.5)' : null}]}
+                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'DASHBOARD' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('DASHBOARD');
-                                this.setState({ screebSideber: 'home' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="home" />
@@ -95,17 +97,15 @@ class Sideber extends React.Component {
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QR' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('QRCODE_SCREEN');
-                                this.setState({ screebSideber: 'QR' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="user" />
                             <Text style={styles.styleNameicon}> {'User'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'select' ? 'rgba(111, 165, 255, 0.5)' : null}]}
+                            style={[styles.listItem,{backgroundColor:  this.state.screebSideber === 'SELECT_FOOD_SCREEN' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('SELECT_FOOD_SCREEN');
-                                this.setState({ screebSideber: 'select' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="search" />
@@ -115,7 +115,6 @@ class Sideber extends React.Component {
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'SCANQR' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('SCANQR_SCREEN');
-                                this.setState({ screebSideber: 'SCANQR' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="camera" />
@@ -125,7 +124,6 @@ class Sideber extends React.Component {
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'LIST' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('LIST_FOOD_SCREEN');
-                                this.setState({ screebSideber: 'LIST' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="list" />
@@ -135,7 +133,6 @@ class Sideber extends React.Component {
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'HISTORY' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('HISTORY_SCREEN');
-                                this.setState({ screebSideber: 'HISTORY' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="history" />
@@ -145,7 +142,6 @@ class Sideber extends React.Component {
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QRCODE' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
                                 navigate('QRCODE_SCREEN');
-                                this.setState({ screebSideber: 'QRCODE' });
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="qrcode" />
@@ -176,4 +172,15 @@ class Sideber extends React.Component {
     }
 }
 
-export default Sideber;
+function mapStateToProps(state) {
+    return{
+        routerName : state.routeName
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    (dispatch) => ({
+        Flights_DATA: bindActionCreators(API.fetchTodo, dispatch),
+    })
+)(Sideber);

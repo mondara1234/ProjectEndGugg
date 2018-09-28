@@ -5,27 +5,20 @@ import { StyleProvider, Root } from 'native-base';
 import ThemeVariables from '../native-base-theme/variables/platform';
 import RootNavigation from './common/rootNavigation';
 import getTheme from '../native-base-theme/components';
-import CommonInitialState from '../components/initialState';
-import {runStore} from "../components/actions/counterActions";
-import configureStore from './common/configStore';
+import { createStore, applyMiddleware } from "redux"
+import thunk from 'redux-thunk';
+import reducer from "./features/User/redux/reducer";
+import axios from 'axios';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from "../src/features/User/redux/sagas";
 
-export const fetchFlights = () => {
-    return fetch('http://localhost/My_SQL/ShowAllDataList.php')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson ;
-        })
-};
+const sagaMiddleware = createSagaMiddleware();
+const Middleware = applyMiddleware(sagaMiddleware, thunk);
+const store = createStore(reducer, Middleware);
 
-export  const store = configureStore();
-// export const  mylogger = (store)=>(next)=>(action)=>{
-//     console.log("Log Action",action);
-//     next(action);
-// };
-class App extends React.PureComponent{
-    componentDidMount() {
-        store.dispatch(runStore());
-    }
+sagaMiddleware.run(rootSaga);
+
+class App extends React.Component{
 
     render() {
         return (
@@ -43,4 +36,5 @@ class App extends React.PureComponent{
         );
     }
 }
+
 export default App;

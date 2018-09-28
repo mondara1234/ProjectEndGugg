@@ -1,9 +1,10 @@
 
-import {CLEAR_COUNTER, ADDDATA_COUNTER} from "../actions/TypesActions";
+import {CLEAR_COUNTER, ADDDATA_COUNTER, FETCHDATA, FETCH_FLIGHT} from "../actions/TypesActions";
 
 const initialState={
-    serverdataSource: {},
-    value: 0
+    serverdataSource: [],
+    value: 0,
+    loading: false
 };
 
 export default (state = initialState,action)=>{
@@ -18,15 +19,14 @@ export default (state = initialState,action)=>{
                 ...state,
                 serverdataSource : []
             };
-        case 'FLIGHTS_LOADED':
+        case 'GET_NEWS':
+            return { ...state, loading: true };
+        case 'NEWS_RECEIVED':
+            return { ...state, serverdataSource: action.json, loading: false };
+        case FETCH_FLIGHT:
             return state={//ใช้สำหรับมีข้อมูลเยอะ สามารเลิกค่าที่ต้องเปลี่ยนได้
                 ...state,
-                serverdataSource : [...state.serverdataSource, action.payload]
-            };
-        case 'FLIGHTS_LOADED_FAILED':
-            return state={//ใช้สำหรับมีข้อมูลเยอะ สามารเลิกค่าที่ต้องเปลี่ยนได้
-                ...state,
-                serverdataSource : [...state.serverdataSource, action.payload]
+                serverdataSource : [...state.serverdataSource, action.payload.data]
             };
         default:
             return state;

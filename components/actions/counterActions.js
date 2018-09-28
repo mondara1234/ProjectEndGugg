@@ -1,4 +1,5 @@
-import {SET_COUNTER,CLEAR_COUNTER,INCRENENT_COUNTER,DECREMENT_COUNTER,ADDDATA_COUNTER } from './TypesActions';
+import {SET_COUNTER,CLEAR_COUNTER,INCRENENT_COUNTER,DECREMENT_COUNTER,ADDDATA_COUNTER, FETCHDATA, FETCH_FLIGHT } from './TypesActions';
+import axios from 'axios';
 
 export const counterIncrement =()=>{
     return{
@@ -32,7 +33,30 @@ export const countermodara =(ADDdata)=>{
     };
 }
 
-export const runStore= (flights) => ({
-    type: 'GET_FLIGHT',
-    payload: flights
+export const runStore = () => {
+        axios.get(`http://192.168.1.4/My_SQL/ShowAllDataList.php`)
+        .then(res => {
+            return{
+                type: FETCHDATA,
+                payload: res.data
+            };
+        })
+}
+
+export function getAllFlights() {
+    return dispatch => {
+        return fetch('http://192.168.1.4/My_SQL/ShowAllDataList.php')
+        .then((response) => response.json())
+        .then((responseJson) => {
+            return {
+                type: FETCH_FLIGHT,
+                payload: responseJson
+            };
+        })
+        .catch((error) => {
+        });
+}}
+
+export const getNews = () => ({
+    type: 'GET_NEWS',
 });

@@ -6,9 +6,17 @@ import ThemeVariables from '../native-base-theme/variables/platform';
 import Testcount from './Testcount';
 import getTheme from '../native-base-theme/components';
 import AllReducer from "./reducers";
-import {createStore} from "redux";
+import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootSaga from './sagar';
 
-export  const store = createStore(AllReducer);
+const sagaMiddleware = createSagaMiddleware();
+const Middleware = applyMiddleware(sagaMiddleware, thunk);
+
+export  const store = createStore(AllReducer, Middleware);
+
+sagaMiddleware.run(rootSaga);
 
 class App extends React.PureComponent{
     render() {

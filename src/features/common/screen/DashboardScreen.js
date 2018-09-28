@@ -4,8 +4,13 @@ import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, I
 import {HISTORY_SCREEN} from "../../history/router";
 import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
 import {LIST_FOOD_SCREEN} from "../../listFood/router";
+import { NavigationActions } from 'react-navigation';
 import MenuItem from "../components/MenuItem";
 import { getUsers } from "../../selectFood/screen/api";
+import {getNews, getRouteName} from "../../User/redux/actions";
+import {bindActionCreators} from "redux";
+import * as API from "../../User/api/api";
+import {connect} from "react-redux";
 
 const cards = [
     {
@@ -39,6 +44,8 @@ class DashboardScreen extends React.Component {
 
     componentDidMount() {
         this.makeRemoteRequest();
+        const screen = 'DASHBOARD';
+        this.props.RouteName(screen);
     }
 
     //คำสั่งส่งค่าtextไปทำงานกับData
@@ -82,6 +89,9 @@ class DashboardScreen extends React.Component {
     };
 
     render() {
+        console.log('Store:',this.props);
+        console.log('navigation:',this.props.navigation.state.routeName);
+        console.log('key:',this.props.navigation.state.key);
         return (
             <ImageBackground
                 source={require('../../../../pulic/assets/images/Boruto.jpg')}
@@ -186,4 +196,17 @@ const styles = StyleSheet.create({
 
 });
 
-export default DashboardScreen;
+function mapStateToProps(state) {
+    return{
+        servers: state.data,
+        routerName : state.routeName
+    };
+}
+
+export default connect(mapStateToProps,
+    (dispatch) => ({
+        navigationActions: bindActionCreators(NavigationActions, dispatch),
+        FETCH_DATA: bindActionCreators(getNews, dispatch),
+        RouteName: bindActionCreators(getRouteName, dispatch),
+    })
+)(DashboardScreen);
