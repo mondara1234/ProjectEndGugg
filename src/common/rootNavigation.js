@@ -1,14 +1,15 @@
 import React from 'react';
+import { Dimensions } from "react-native";
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter, DASHBOARD } from '../features/common/router';
 import { historyRouter } from "../features/history/router";
-import { ListFoodRouter, LIST_FOOD_SCREEN } from "../features/listFood/router";
+import { ListFoodRouter } from "../features/listFood/router";
+import { calFoodRouter, CAL_FOOD_SCREEN } from "../features/calFood/router";
 import {SelectFoodRouter, SELECT_FOOD_SCREEN} from "../features/selectFood/router";
 import { UserRouter, LOGIN } from '../features/User/router';
 import { qrcodeRouter } from '../features/qrcodeScanner/router';
-import { HEADER_STYLE } from '../../../ProjectEndGugg/src/common/constants';
-import {Dimensions} from "react-native";
+import { HEADER_STYLE } from '../../src/common/constants';
 import {createReduxBoundAddListener} from "react-navigation-redux-helpers";
 
 export const RootStack = StackNavigator({
@@ -17,9 +18,10 @@ export const RootStack = StackNavigator({
     ...UserRouter,
     ...qrcodeRouter,
     ...ListFoodRouter,
-    ...SelectFoodRouter
+    ...SelectFoodRouter,
+    ...calFoodRouter
 },{
-    initialRouteName: LOGIN,
+    initialRouteName: CAL_FOOD_SCREEN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),
