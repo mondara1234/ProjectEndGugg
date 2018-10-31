@@ -3,13 +3,11 @@ import { View, StyleSheet, ImageBackground, Dimensions, Text, Image } from 'reac
 import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, Icon, Button } from 'native-base';
 import {HISTORY_SCREEN} from "../../history/router";
 import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
-import {LIST_FOOD_SCREEN} from "../../listFood/router";
 import { NavigationActions } from 'react-navigation';
 import MenuItem from "../components/MenuItem";
 import { getUsers } from "../../selectFood/screen/api";
 import {getNews, getRouteName} from "../../User/redux/actions";
 import {bindActionCreators} from "redux";
-import * as API from "../../User/api/api";
 import {connect} from "react-redux";
 
 const cards = [
@@ -132,9 +130,9 @@ class DashboardScreen extends React.Component {
                     </View>
                     <View style={styles.menuContainer}>
                         <MenuItem
-                            itemImage={require('../../../../pulic/assets/images/List.jpg')}
-                            onPress={() => this.props.navigation.navigate( 'LIST_FOOD_SCREEN' )}
-                        />{/*แสดงรายการอาหารทั้งหมดแบบ List*/}
+                            itemImage={require('../../../../pulic/assets/images/logo1.png')}
+                            onPress={() => this.props.navigation.navigate( 'CAL_FOOD_SCREEN' )}
+                        />{/*แสดงรายการคำนวณ BMR TEDD*/}
                         <MenuItem
                             itemImage={require('../../../../pulic/assets/images/History.png')}
                             onPress={() => this.props.navigation.navigate( 'HISTORY_SCREEN' )}

@@ -4,7 +4,8 @@ import { Container, Button, Tab, Tabs } from 'native-base';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import CommonText from '../../common/components/CommonText';
 import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
-import BMRScreen from './BMRScreen';
+import BMRScreen from './TabScreen/BMRScreen';
+import REEScreen from './TabScreen/REEScreen';
 
 class calfoodScreen extends React.PureComponent {
 
@@ -12,48 +13,14 @@ class calfoodScreen extends React.PureComponent {
         return (
             <Container>
                 <Text style={{fontSize: 28}}>{'คำนวณการเผาผลานร่างกาย'}</Text>
-                <View style={styles.container}>
-                    <Button style={styles.colors}>
-                    <IconFontAwesome
-                        size={20}
-                        color={'#ff94b8'}
-                        name={'qrcode'}
-                    />
-                    <Text>{'BMR'}</Text>
-                </Button>
-                    <Button style={styles.colors}>
-                        <IconFontAwesome
-                            size={20}
-                            color={'#ff94b8'}
-                            name={'qrcode'}
-                        />
-                        <Text>{'REE'}</Text>
-                    </Button>
-                    <Button style={styles.colors}>
-                        <IconFontAwesome
-                            size={20}
-                            color={'#ff94b8'}
-                            name={'qrcode'}
-                        />
-                        <Text>{'TDEE'}</Text>
-                    </Button>
-                    <Button style={styles.colors}>
-                        <IconFontAwesome
-                            size={20}
-                            color={'#ff94b8'}
-                            name={'qrcode'}
-                        />
-                        <Text>{'อื่นๆ'}</Text>
-                    </Button>
-                </View>
                 <Tabs style={{flex:1}}>
                     <Tab heading="BMR">
                         <BMRScreen />
                     </Tab>
                     <Tab heading="REE">
-                        <BMRScreen />
+                        <REEScreen />
                     </Tab>
-                    <Tab heading="TDEE">
+                    <Tab heading="คำนวฯอาหารที่กินไปต้องลดเท่าไร">
                         <BMRScreen />
                     </Tab>
                 </Tabs>

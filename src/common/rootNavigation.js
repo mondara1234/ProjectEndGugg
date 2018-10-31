@@ -4,7 +4,7 @@ import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-nav
 import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter, DASHBOARD } from '../features/common/router';
 import { historyRouter } from "../features/history/router";
-import { ListFoodRouter } from "../features/listFood/router";
+import { historyRouter, HISTORY_SCREEN, DETLEHISTORY_SCREEN } from "../features/history/router";
 import { calFoodRouter, CAL_FOOD_SCREEN } from "../features/calFood/router";
 import {SelectFoodRouter, SELECT_FOOD_SCREEN} from "../features/selectFood/router";
 import { UserRouter, LOGIN } from '../features/User/router';
@@ -17,11 +17,10 @@ export const RootStack = StackNavigator({
     ...historyRouter,
     ...UserRouter,
     ...qrcodeRouter,
-    ...ListFoodRouter,
     ...SelectFoodRouter,
     ...calFoodRouter
 },{
-    initialRouteName: CAL_FOOD_SCREEN,
+    initialRouteName: HISTORY_SCREEN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),
