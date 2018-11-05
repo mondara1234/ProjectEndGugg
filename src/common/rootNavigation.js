@@ -3,7 +3,6 @@ import { Dimensions } from "react-native";
 import { addNavigationHelpers, DrawerNavigator, StackNavigator } from 'react-navigation';
 import Sidebar from '../features/common/containers/Sideber';
 import { CommonRouter, DASHBOARD } from '../features/common/router';
-import { historyRouter } from "../features/history/router";
 import { historyRouter, HISTORY_SCREEN, DETLEHISTORY_SCREEN } from "../features/history/router";
 import { calFoodRouter, CAL_FOOD_SCREEN } from "../features/calFood/router";
 import {SelectFoodRouter, SELECT_FOOD_SCREEN} from "../features/selectFood/router";

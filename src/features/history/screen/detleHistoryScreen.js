@@ -1,9 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList,ActivityIndicator } from 'react-native';
 import { Container, Button, Item, Input, Icon, H3, ListItem, Thumbnail, Left, Body  } from 'native-base';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
 import CommonText from '../../common/components/CommonText';
 import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 import userHistory from '../api/userHistory';
+import {DASHBOARD} from '../../common/router';
 
 class detleHistoryScreen extends React.PureComponent {
     constructor (props) {
@@ -67,7 +71,19 @@ class detleHistoryScreen extends React.PureComponent {
 
 detleHistoryScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'ประวัติการใช้งาน'} />,
-    headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
+    headerRight: <HeaderLeftMenu
+        icon={'home'}
+        onPress={()=> {
+            navigation.dispatch(
+                NavigationActions.reset({
+                    index: 0,
+                    actions: [
+                        NavigationActions.navigate({ routeName: DASHBOARD })
+                    ]
+                })
+            );
+        }}
+    />
 });
 
 const styles = StyleSheet.create({
@@ -84,4 +100,9 @@ const styles = StyleSheet.create({
 });
 
 
-export default detleHistoryScreen;
+export default connect (
+    null,
+    (dispatch) => ({
+        navigationActions: bindActionCreators(NavigationActions, dispatch)
+    })
+)(detleHistoryScreen);

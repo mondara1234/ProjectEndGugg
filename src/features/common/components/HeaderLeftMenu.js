@@ -12,7 +12,7 @@ const HeaderLeftMenu = (props) => {
             style={styles.button}
             onPress={props.onPress}
         >
-            <Icon name={props.icon} style={styles.icon} />
+            <Icon name={props.icon} style={[styles.icon,{fontSize: props.icon === 'home' ? 25 : 20}]} />
         </Button>
     )
 };
@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     icon: {
-        fontSize: 20,
         color: '#fff',
+        paddingTop: 12
     }
 });
 
 HeaderLeftMenu.propTypes = {
     onPress: PropTypes.func.isRequired,
-    icon: PropTypes.string,
+    icon: PropTypes.string
 };
 
 HeaderLeftMenu.defaultProps = {

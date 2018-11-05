@@ -7,5 +7,5 @@ export const HEADER_STYLE = {
     headerTintColor: 'white'
 };
 
-
+export const APP_VERSION_TEXT = '1.0.0';
 export const DEFAULT_LOCALE = 'th';
