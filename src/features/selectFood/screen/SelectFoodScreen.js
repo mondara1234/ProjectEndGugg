@@ -90,7 +90,7 @@ class SelectFoodScreen extends React.Component {
             <View style={{flex:1}}>
                 <SearchBar
                     ref={search => this.search = search}
-                    placeholder="กรอกข้อความ"
+                    placeholder="ชื่ออาหาร"
                     round
                     showLoadingIcon={this.state.query ? true : false}
                     clearIcon={{ color: 'red' }}
@@ -120,7 +120,7 @@ class SelectFoodScreen extends React.Component {
     }
 }
 SelectFoodScreen.navigationOptions  = ({navigation}) => ({
-    headerTitle: <CommonText text={'ค้นหาอาหาร'} />,
+    headerTitle: <CommonText text={'ค้นหาอาหารมีฟังชั่น adminแก้ไขข้อมูลได้'} />,
     headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
 });
 function mapStateToProps(state) {

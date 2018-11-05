@@ -4,7 +4,7 @@ import { Container } from 'native-base';
 import CommonText from '../../common/components/CommonText';
 import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 
-class ListFoodScreen extends React.PureComponent {
+class CalListFoodScreen extends React.PureComponent {
 
     render() {
         return (
@@ -15,9 +15,9 @@ class ListFoodScreen extends React.PureComponent {
     }
 }
 
-ListFoodScreen.navigationOptions  = ({navigation}) => ({
+CalListFoodScreen.navigationOptions  = ({navigation}) => ({
     headerTitle: <CommonText text={'รายการอาหาร'} />,
     headerLeft: <HeaderLeftMenu onPress={() => navigation.navigate('DrawerOpen')} />
 });
 
-export default ListFoodScreen;
+export default CalListFoodScreen;

@@ -9,10 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './SideMenu.style';
 import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
 import {HISTORY_SCREEN} from "../../history/router";
-import {LIST_FOOD_SCREEN} from "../../listFood/router";
-import SelectFoodScreen from '../../selectFood/screen/SelectFoodScreen';
-import DashboardScreen from '../screen/DashboardScreen';
-import {getNews} from "../../User/redux/actions";
+import {CAL_FOOD_SCREEN} from "../../calFood/router";
 import {bindActionCreators} from "redux";
 import * as API from "../../User/api/api";
 import {connect} from "react-redux";
@@ -123,11 +120,11 @@ class Sideber extends React.Component {
                         <TouchableOpacity
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'LIST' ? 'rgba(111, 165, 255, 0.5)' : null}]}
                             onPress={() => {
-                                navigate('LIST_FOOD_SCREEN');
+                                navigate('CAL_FOOD_SCREEN');
                             }}
                         >
                             <Icon style={styles.listItemIcon} name="list" />
-                            <Text style={styles.styleNameicon}> {'List'} </Text>
+                            <Text style={styles.styleNameicon}> {'คำนวณ'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'HISTORY' ? 'rgba(111, 165, 255, 0.5)' : null}]}
