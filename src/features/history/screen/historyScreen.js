@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { Button, Item, Input, Icon, H3, Body, Card, CardItem } from 'native-base';
-import CommonText from '_features/common/components/CommonText';
-import HeaderLeftMenu from '_features/common/components/HeaderLeftMenu';
+import CommonText from '../../common/components/CommonText';
+import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
 import userHistory from '../api/userHistory';
 import { DETLEHISTORY_SCREEN } from "../router";
 
@@ -43,6 +43,9 @@ class HistoryScreen extends React.PureComponent {
     };
 
     render() {
+        console.log('navigation:',this.props.navigation.state.routeName);
+        console.log('key:',this.props.navigation.state.key);
+
         return (
             this.state.isLoading ?
                 <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>

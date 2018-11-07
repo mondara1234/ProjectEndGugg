@@ -7,17 +7,18 @@ import { NavigationActions } from 'react-navigation';
 import { styles as s } from 'react-native-style-tachyons';
 import { Container, Content, Thumbnail, ListItem, Left, Body } from 'native-base';
 import { Alert, StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import themeVariables from '_theme';
-import { APP_VERSION_TEXT } from '_src/common/constants';
-import CommonText from '_features/common/components/CommonText';
-import { DASHBOARD } from "_features/common/router";
-import { PROFILE_LIST } from "_features/User/router";
-import { SELECT_FOOD_SCREEN } from "_features/selectFood/router";
-import { HISTORY_SCREEN } from "_features/history/router";
-import { SCANQR_SCREEN } from "_features/qrcodeScanner/router";
-import { CAL_FOOD_SCREEN } from "_features/calFood/router";
-import * as API from "_features/User/api/api";
+import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+import themeVariables from '../../../../native-base-theme/variables/platform';
+import { APP_VERSION_TEXT } from '../../../common/constants';
+import CommonText from '../../common/components/CommonText';
+import { DASHBOARD } from "../../common/router";
+import { PROFILE_LIST, LOGIN } from "../../User/router";
+import { SELECT_FOOD_SCREEN } from "../../selectFood/router";
+import { HISTORY_SCREEN } from "../../history/router";
+import { SCANQR_SCREEN } from "../../qrcodeScanner/router";
+import { CAL_FOOD_SCREEN } from "../../calFood/router";
+import * as API from "../../User/api/api";
 
 class Sideber extends React.Component {
     constructor(props) {
@@ -58,14 +59,14 @@ class Sideber extends React.Component {
                             'ออกจากระบบ',
                             'ต้องการออกจากระบบ ?',
                             [
-                                {text: 'ตกลง', onPress: () => alert('vvvvv')},
+                                {text: 'ตกลง', onPress: () => navigate({routeName: LOGIN})},
                                 {text: 'ยกเลิก'}
                             ]
                         )
                     } else {
                         navigate({
                             routeName: `${item.route}`,
-                            params:  item.params
+                            params: item.params
                         })
                         /*this.props.NavigationActions.reset({
                             index: 0,
@@ -79,14 +80,19 @@ class Sideber extends React.Component {
                     }
                 }}
             >
-                <Left>
-                    <Icon
+                <Left>{
+                item.icon === 'log-out' ?
+                    <IconEntypo
                         style={[styles.listItemIcon, {color: fontColor}]}
                         name={item.icon}
                     />
+                    :<IconFontAwesome
+                    style={[styles.listItemIcon, {color: fontColor}]}
+                    name={item.icon}
+                />}
                 </Left>
                 <Body style={s.b__transparent}>
-                <CommonText text={`${item.name}.title`} style={[styles.fontBase, s.ml2, {color: fontColor}]} weight={isAndroid ? 'bold' : null} />
+                    <CommonText text={`${item.name}.title`} style={[styles.fontBase, s.ml2, {color: fontColor}]} weight={isAndroid ? 'bold' : null} />
                 </Body>
             </ListItem>
         )
@@ -103,7 +109,7 @@ class Sideber extends React.Component {
             {name: 'ประวัติการใช้งาน', icon: 'history', route: HISTORY_SCREEN, params: {isRootPage: true}},
             {name: 'ค้นหาอาหาร', icon: 'search', route: SELECT_FOOD_SCREEN},
             {name: 'user_profile', icon: 'user-circle', route: PROFILE_LIST},
-            {name: 'logout', icon: 'sign-out-alt', route: null}
+            {name: 'logout', icon: 'log-out', route: null}
         ];
 
         return (

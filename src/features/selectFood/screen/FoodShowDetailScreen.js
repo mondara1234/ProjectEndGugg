@@ -5,10 +5,10 @@ import { NavigationActions } from "react-navigation";
 import { StyleSheet, View, Image } from 'react-native';
 import { Content , Container, Button } from 'native-base';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
-import CommonText from '_features/common/components/CommonText';
-import HeaderLeftMenu from '_features/common/components/HeaderLeftMenu';
-import { getNews, getRouteName } from "_features/User/redux/actions";
-import { DASHBOARD } from "_features/common/router";
+import CommonText from '../../common/components/CommonText';
+import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
+import { getNews, getRouteName } from "../../User/redux/actions";
+import { DASHBOARD } from "../../common/router";
 import { HOW_TO_FOOD_SCREEN } from "../router";
 
 class FoodShowDetailScreen extends React.Component{

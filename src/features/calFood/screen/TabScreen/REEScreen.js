@@ -190,7 +190,7 @@ class REEScreen extends React.PureComponent {
                             </Form>
                         </View>
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.button} onPress={()=> this.calFunction}>
+                            <TouchableOpacity style={styles.button} onPress={this.calFunction}>
                                 <Text style={styles.buttonText} > {'คำนวณ'} </Text>
                             </TouchableOpacity>
                         </View>

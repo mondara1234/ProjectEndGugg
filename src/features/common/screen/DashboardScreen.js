@@ -90,6 +90,7 @@ class DashboardScreen extends React.Component {
         console.log('Store:',this.props);
         console.log('navigation:',this.props.navigation.state.routeName);
         console.log('key:',this.props.navigation.state.key);
+
         return (
             <ImageBackground
                 source={require('../../../../pulic/assets/images/Boruto.jpg')}

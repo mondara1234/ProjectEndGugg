@@ -10,7 +10,6 @@ class BMRScreen extends React.PureComponent {
             tt: '',
             age: '',
             sex: 'Select',
-            TDEE: 'Select',
             BMR: '', //คำนวณBMR ไม่รวม การออกกกำลังกาย
             sum: '',  //คำนวณTEDD BMR * การออกกกำลังกาย
         }
@@ -22,96 +21,27 @@ class BMRScreen extends React.PureComponent {
         });
     }
 
-    onValueChangeTDEE(value: string) { //รับค่า value จาก dropdown ของ TEDD
-        this.setState({
-            TDEE: value
-        });
-    }
-
     calFunction = () =>{
         let kk = this.state.kk; // น้ำหนัก
         let tt = this.state.tt; //ส/่วนสูง
         let age = this.state.age; //อายุ
         const sex = this.state.sex; //เพศ
-        const tedds = this.state.TDEE; //ค่า index ของ TEDD
 
         if(kk === ''||tt === ''||age === '') {
             alert('กรุณากรอกข้อมูลให้ครบ')
         }else if(sex === 'Select'){
             alert('กรุณาเลือกเพศ')
-        }else if(tedds === 'Select') {
-            alert('กรุณาเลือกปริมาณการออกกำลังกาย')
         }else if(sex === 'man'){
             let BMR_man = 66 + (13.7 * kk)+(5 * tt) - (6.8 * age);
             this.setState({
                 BMR: BMR_man
             });
-
-            let bmrs = BMR_man; // เก็บค่า BMR
-            let sumTEDD = 0;
-
-            if(tedds === 'w1'){
-                sumTEDD =  bmrs * 1.2;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w2'){
-                sumTEDD =  bmrs * 1.375;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w3'){
-                sumTEDD =  bmrs * 1.55;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w4'){
-                sumTEDD =  bmrs * 1.725;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w5'){
-                sumTEDD =  bmrs * 1.9;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }
         }else if(sex === 'gral') {
             let BMR_gral = 665 + (9.6 * kk) + (1.8 * tt) - (4.7 * age);
 
             this.setState({
                 BMR: BMR_gral
             });
-
-            let bmrs = BMR_gral; // เก็บค่า BMR
-            let sumTEDD = 0;
-
-            if(tedds === 'w1'){
-                sumTEDD =  bmrs * 1.2;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w2'){
-                sumTEDD =  bmrs * 1.375;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w3'){
-                sumTEDD =  bmrs * 1.55;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w4'){
-                sumTEDD =  bmrs * 1.725;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }else if(tedds === 'w5'){
-                sumTEDD =  bmrs * 1.9;
-                this.setState({
-                    sum: sumTEDD
-                });
-            }
         }
     };
 
@@ -172,37 +102,14 @@ class BMRScreen extends React.PureComponent {
                             </Picker>
                         </Form>
                     </View>
-                        <View style={styles.container}>
-                            <Text style={{fontSize: 14}}> {'ปริมาณการออกกำลังกาย'} </Text>
-                            <Form>
-                                <Picker
-                                    mode="dropdown"
-                                    style={{ width: 200 }}
-                                    selectedValue={ this.state.TDEE }
-                                    onValueChange={ this.onValueChangeTDEE.bind(this) }
-                                >
-                                    <Picker.Item value="Select" label="กรุณาเลือกปริมาณการออกกำลังกาย" />
-                                    <Picker.Item value="w1" label="นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย หรือน้อยมาก" />
-                                    <Picker.Item value="w2" label="ออกกำลังกายหรือเล่นกีฬาเล็กน้อย 1-3 วัน/สัปดาห์, เดินบ้างเล็กน้อย ทำงานออฟฟิศ" />
-                                    <Picker.Item value="w3" label="ออกกำลังกายหรือเล่นกีฬาปานกลาง 3-5 วัน/สัปดาห์, เคลื่อนที่ตลอดเวลา" />
-                                    <Picker.Item value="w4" label="ออกกำลังกายหรือเล่นกีฬาอย่างหนัก 6-7 วัน/สัปดาห์" />
-                                    <Picker.Item value="w5" label="ออกกำลังกายหรือเล่นกีฬาอย่างหนัก หรือเป็นนักกีฬา ทำงานที่ใช้แรงงานมาก" />
-                                </Picker>
-                            </Form>
-                        </View>
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.button} onPress={()=> this.calFunction}>
+                            <TouchableOpacity style={styles.button} onPress={this.calFunction}>
                                 <Text style={styles.buttonText}> {'คำนวณ'} </Text>
                             </TouchableOpacity>
                         </View>
                         <Text style={{fontSize: 15}}> {'พลังงานที่ร่างกายต้องการ(ไม่นับออกกำลังกาย) : '} </Text>
                         <View style={styles.container}>
                             <Text style={styles.textsum}>  {this.state.BMR} </Text>
-                            <Text style={{fontSize: 15}}> {'แคลรอรี่'} </Text>
-                        </View>
-                        <Text style={{fontSize: 15}}> {'พลังงานที่ร่างกายต้องการ(นับออกกำลังกาย) : '} </Text>
-                        <View style={styles.container}>
-                            <Text style={styles.textsum}> {this.state.sum} </Text>
                             <Text style={{fontSize: 15}}> {'แคลรอรี่'} </Text>
                         </View>
                     </Content>

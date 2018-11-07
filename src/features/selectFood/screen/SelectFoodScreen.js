@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { View, Text, FlatList, SafeAreaView } from "react-native";
 import { List, ListItem, SearchBar } from "react-native-elements";
-import CommonText from '_features/common/components/CommonText';
-import HeaderLeftMenu from '_features/common/components/HeaderLeftMenu';
-import { getNews, getRouteName } from "_features/User/redux/actions";
-import * as API from "_features/User/api/api";
+import CommonText from '../../common/components/CommonText';
+import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
+import { getNews, getRouteName } from "../../User/redux/actions";
+import * as API from "../../User/api/api";
 import { FOOD_SHOW_DETAIL_SCREEN } from "../router";
 import { getUsers, contains } from "./api/index";
 

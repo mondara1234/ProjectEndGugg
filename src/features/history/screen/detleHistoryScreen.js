@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import userHistory from '../api/userHistory';
-import CommonText from '_features/common/components/CommonText';
-import HeaderLeftMenu from '_features/common/components/HeaderLeftMenu';
-import { DASHBOARD } from '_features/common/router';
+import CommonText from '../../common/components/CommonText';
+import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
+import { DASHBOARD } from '../../common/router';
 
 class detleHistoryScreen extends React.PureComponent {
     constructor (props) {
@@ -45,6 +45,9 @@ class detleHistoryScreen extends React.PureComponent {
     };
 
     render() {
+        console.log('navigation:',this.props.navigation.state.routeName);
+        console.log('key:',this.props.navigation.state.key);
+
         return (
             this.state.isLoading ?
                 <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>

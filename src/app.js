@@ -21,6 +21,8 @@ sagaMiddleware.run(rootSaga);
 class App extends React.Component{
 
     render() {
+        //console.disableYellowBox = true;//ปิดข้อความสีเหลือง
+
         return (
             <StyleProvider style={getTheme(ThemeVariables)}>
                 <Provider store={store}>
