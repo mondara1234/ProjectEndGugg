@@ -117,47 +117,47 @@ class REEScreen extends React.PureComponent {
     render() {
         return (
             <Container>
-                <Text style={{fontSize: 22}}>{'คำนวณพลังงานที่ร่างกายต้องการในแต่ละวัน'}</Text>
+                <Text style={styles.headerText}> {'คำนวณพลังงานที่ร่างกายต้องการในแต่ละวัน'} </Text>
                 <View style={styles.containerView}>
                     <Content>
                     <View style={styles.container}>
-                        <Text style={styles.textTitle}>{'น้ำหนัก'}</Text>
+                        <Text style={styles.textTitle}> {'น้ำหนัก'} </Text>
                     <TextInput style={styles.inputBox}
-                               underlineColorAndroid='rgba(0,0,0,0)'
-                               placeholder="น้ำหนักของคุณ"
-                               placeholderTextColor = "#000000"
-                               selectionColor="#000000"
-                               keyboardType="number"//ใช้ไม่ถูก
-                               onChangeText={kk =>this.setState({kk})}
+                               underlineColorAndroid= "rgba(0,0,0,0)"
+                               placeholder= "น้ำหนักของคุณ"
+                               placeholderTextColor= "#000000"
+                               selectionColor= "#000000"
+                               keyboardType= "number"//ใช้ไม่ถูก
+                               onChangeText= {kk =>this.setState({ kk })}
                     />
                         <Text  style={{fontSize: 18}}>{'กิโลกรัม'}</Text>
                     </View>
                     <View style={styles.container}>
                         <Text style={styles.textTitle}>{'ส่วนสูง'}</Text>
                         <TextInput style={styles.inputBox}
-                                   underlineColorAndroid='rgba(0,0,0,0)'
-                                   placeholder="ส่วนสูงของคุณ"
-                                   placeholderTextColor = "#000000"
-                                   selectionColor="#000000"
-                                   keyboardType="number"//ใช้ไม่ถูก
-                                   onChangeText={tt =>this.setState({tt})}
+                                   underlineColorAndroid= "rgba(0,0,0,0)"
+                                   placeholder= "ส่วนสูงของคุณ"
+                                   placeholderTextColor= "#000000"
+                                   selectionColor= "#000000"
+                                   keyboardType= "number"//ใช้ไม่ถูก
+                                   onChangeText={tt =>this.setState({ tt })}
                         />
-                        <Text style={{fontSize: 18}}>{'เซนติเมตร'}</Text>
+                        <Text style={{fontSize: 18}}> {'เซนติเมตร'} </Text>
                     </View>
                     <View style={styles.container}>
-                        <Text style={styles.textTitle}>{'อายุ'}</Text>
+                        <Text style={styles.textTitle}> {'อายุ'} </Text>
                         <TextInput style={[styles.inputBox,{marginLeft: 40}]}
-                                   underlineColorAndroid='rgba(0,0,0,0)'
-                                   placeholder="อายุของคุณ"
-                                   placeholderTextColor = "#000000"
-                                   selectionColor="#000000"
-                                   keyboardType="number"//ใช้ไม่ถูก
-                                   onChangeText={age =>this.setState({age})}
+                                   underlineColorAndroid= "rgba(0,0,0,0)"
+                                   placeholder= "อายุของคุณ"
+                                   placeholderTextColor= "#000000"
+                                   selectionColor= "#000000"
+                                   keyboardType= "number"//ใช้ไม่ถูก
+                                   onChangeText= {age =>this.setState({ age })}
                         />
-                        <Text style={{fontSize: 18}}>{'ปี'}</Text>
+                        <Text style={{fontSize: 18}}> {'ปี'} </Text>
                     </View>
                     <View style={styles.container}>
-                        <Text style={styles.textTitle}>{'เพศ'}</Text>
+                        <Text style={styles.textTitle}> {'เพศ'} </Text>
                         <Form>
                             <Picker
                                 mode="dropdown"
@@ -165,9 +165,9 @@ class REEScreen extends React.PureComponent {
                                 selectedValue={this.state.sex}
                                 onValueChange={this.onValueChangeSex.bind(this)}
                             >
-                                <Picker.Item label="กรุณาเลือกเพศ" value="Select" />
-                                <Picker.Item label="ชาย" value="man" />
-                                <Picker.Item label="หญิง" value="gral" />
+                                <Picker.Item value="Select" label= "กรุณาเลือกเพศ" />
+                                <Picker.Item value="man"    label= "ชาย" />
+                                <Picker.Item value="gral"   label= "หญิง" />
                             </Picker>
                         </Form>
                     </View>
@@ -180,29 +180,29 @@ class REEScreen extends React.PureComponent {
                                     selectedValue={this.state.TDEE}
                                     onValueChange={this.onValueChangeTDEE.bind(this)}
                                 >
-                                    <Picker.Item label="กรุณาเลือกปริมาณการออกกำลังกาย" value="Select" />
-                                    <Picker.Item label="นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย หรือน้อยมาก" value="w1" />
-                                    <Picker.Item label="ออกกำลังกายหรือเล่นกีฬาเล็กน้อย 1-3 วัน/สัปดาห์, เดินบ้างเล็กน้อย ทำงานออฟฟิศ" value="w2" />
-                                    <Picker.Item label="ออกกำลังกายหรือเล่นกีฬาปานกลาง 3-5 วัน/สัปดาห์, เคลื่อนที่ตลอดเวลา" value="w3" />
-                                    <Picker.Item label="ออกกำลังกายหรือเล่นกีฬาอย่างหนัก 6-7 วัน/สัปดาห์" value="w4" />
-                                    <Picker.Item label="ออกกำลังกายหรือเล่นกีฬาอย่างหนัก หรือเป็นนักกีฬา ทำงานที่ใช้แรงงานมาก" value="w5" />
+                                    <Picker.Item value="Select" label="กรุณาเลือกปริมาณการออกกำลังกาย" />
+                                    <Picker.Item value="w1" label="นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย หรือน้อยมาก" />
+                                    <Picker.Item value="w2" label="ออกกำลังกายหรือเล่นกีฬาเล็กน้อย 1-3 วัน/สัปดาห์, เดินบ้างเล็กน้อย ทำงานออฟฟิศ" />
+                                    <Picker.Item value="w3" label="ออกกำลังกายหรือเล่นกีฬาปานกลาง 3-5 วัน/สัปดาห์, เคลื่อนที่ตลอดเวลา" />
+                                    <Picker.Item value="w4" label="ออกกำลังกายหรือเล่นกีฬาอย่างหนัก 6-7 วัน/สัปดาห์" />
+                                    <Picker.Item value="w5" label="ออกกำลังกายหรือเล่นกีฬาอย่างหนัก หรือเป็นนักกีฬา ทำงานที่ใช้แรงงานมาก" />
                                 </Picker>
                             </Form>
                         </View>
                         <View style={styles.buttonView}>
-                            <TouchableOpacity style={styles.button} onPress={this.calFunction}>
+                            <TouchableOpacity style={styles.button} onPress={()=> this.calFunction}>
                                 <Text style={styles.buttonText} > {'คำนวณ'} </Text>
                             </TouchableOpacity>
                         </View>
-                        <Text style={{fontSize: 15}}>{'พลังงานที่ร่างกายต้องการ(ไม่นับออกกำลังกาย) : '}</Text>
+                        <Text style={{fontSize: 15}}> {'พลังงานที่ร่างกายต้องการ(ไม่นับออกกำลังกาย) : '} </Text>
                         <View style={styles.container}>
-                            <Text style={styles.textsum}>{this.state.BMR}</Text>
-                            <Text style={{fontSize: 15}}>{'แคลรอรี่'}</Text>
+                            <Text style={styles.textsum}> {this.state.BMR} </Text>
+                            <Text style={{fontSize: 15}}> {'แคลรอรี่'} </Text>
                         </View>
-                        <Text style={{fontSize: 15}}>{'พลังงานที่ร่างกายต้องการ(นับออกกำลังกาย) : '}</Text>
+                        <Text style={{fontSize: 15}}> {'พลังงานที่ร่างกายต้องการ(นับออกกำลังกาย) : '} </Text>
                         <View style={styles.container}>
-                            <Text style={styles.textsum}>{this.state.sum}</Text>
-                            <Text style={{fontSize: 15}}>{'แคลรอรี่'}</Text>
+                            <Text style={styles.textsum}> {this.state.sum} </Text>
+                            <Text style={{fontSize: 15}}> {'แคลรอรี่'} </Text>
                         </View>
                     </Content>
                 </View>
@@ -266,7 +266,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: 150,
         height: 40
-    }
+    },
+    headerText:{
+        fontSize: 22
+    },
 
 });
 

@@ -3,12 +3,16 @@ import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-nativ
 import QRCode from 'react-native-qrcode';
 
 class QRCodesScreen extends React.Component {
-    state = {
-        Text_Input: '',
-        Text_Output: ''
-    };
+    constructor(props){
+        super(props);
 
-    getTextInputValue=()=>{
+        this.state = {
+            Text_Input: '',
+            Text_Output: ''
+        };
+    }
+
+    getTextInputValue = () => {
       this.setState({
           Text_Output: this.state.Text_Input
       })
@@ -20,15 +24,15 @@ class QRCodesScreen extends React.Component {
                 <Text style={styles.textTitle}> {'สามารถเพิ่มเพื่อนได้ง่ายๆ เพียงแสกน คิวอาร์โค้ต ด้างล่างนี้ '} </Text>
                 <View style={styles.borderQrcode}>
                     <View style={styles.viewQrcode}>
-                <QRCode
-                    value={this.state.Text_Output}
-                    size={200}
-                    bgColor='#fff'
-                    fgColor='#000'
-                />
+                        <QRCode
+                            value={this.state.Text_Output}
+                            size={200}
+                            bgColor='#fff'
+                            fgColor='#000'
+                        />
+                    </View>
                 </View>
-                </View>
-                <Text style={styles.textTitle}> {'เปลี่ยน QRcode '} </Text>
+                <Text style={styles.textTitle}> {'เปลี่ยน QRcode'} </Text>
                 <TextInput
                     style={styles.textInput}
                     onChangeText={(text) => this.setState({Text_Input: text})}
@@ -40,21 +44,21 @@ class QRCodesScreen extends React.Component {
                     activeOpacity={0.7}
                     style={styles.button}
                 >
-                    <Text style={styles.textStyle}>{'Generate'}</Text>
+                    <Text style={styles.textStyle}> {'Generate'} </Text>
                 </TouchableOpacity>
             </View>
         );
     };
 }
 
-QRCodesScreen.navigationOptions  = ({navigation}) => ({
+QRCodesScreen.navigationOptions = ({ navigation }) => ({
     header: null
 });
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:'#ABABAB',
+        backgroundColor: '#ABABAB',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -95,7 +99,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginVertical: 40
     }
-
 });
 
 export  default QRCodesScreen;

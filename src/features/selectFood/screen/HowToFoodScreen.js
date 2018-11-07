@@ -1,15 +1,20 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { NavigationActions } from "react-navigation";
+import { bindActionCreators} from "redux/index";
 import { StyleSheet, View, Image } from 'react-native';
 import { Content , Container, Button } from  'native-base';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
-import CommonText from '../../common/components/CommonText';
-import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
+import CommonText from '_features/common/components/CommonText';
+import HeaderLeftMenu from '_features/common/components/HeaderLeftMenu';
+import { DASHBOARD } from "_features/common/router";
 
 class HowToFoodScreen extends React.Component{
 
     render(){
         const { data, otherParam } = this.props.navigation.state.params;
         console.log('sss',data);
+
         return(
             <Container>
                 <Content>
@@ -44,8 +49,21 @@ class HowToFoodScreen extends React.Component{
     }
 }
 
-HowToFoodScreen.navigationOptions  = ({navigation}) => ({
-    headerTitle: <CommonText text={'ขั้นตอนการทำอาหาร'} />,
+HowToFoodScreen.navigationOptions  = ({ navigation }) => ({
+    headerTitle: <CommonText text= {'ขั้นตอนการทำอาหาร'} />,
+    headerRight: <HeaderLeftMenu
+        icon={'home'}
+        onPress={()=> {
+            navigation.dispatch(
+                NavigationActions.reset({
+                    index: 0,
+                    actions: [
+                        NavigationActions.navigate({ routeName: DASHBOARD })
+                    ]
+                })
+            );
+        }}
+    />
 });
 
 const styles = StyleSheet.create({
@@ -78,4 +96,9 @@ const styles = StyleSheet.create({
 
 });
 
-export default HowToFoodScreen;
+export default connect (
+    null,
+    (dispatch) => ({
+        navigationActions: bindActionCreators(NavigationActions, dispatch)
+    })
+)(HowToFoodScreen);

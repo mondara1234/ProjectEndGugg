@@ -6,16 +6,16 @@ import QRScannerRectView from '../components/QRScannerRectView';
 
 class ScanQRScreen extends Component {
     onSuccess(e) {
-            Linking
-                .openURL(e.data)
-                .catch(
-                    Toast.show('Type: ' + e.type + '\nData: ' + e.data)
-                );
+        Linking
+            .openURL(e.data)
+            .catch(
+                Toast.show('Type: ' + e.type + '\nData: ' + e.data)
+            );
     }
 
     render() {
-
         const SCREEN_HEIGHT = Dimensions.get("window").height;
+
         return (
             <QRCodeScanner
                 onRead={this.onSuccess}
@@ -33,7 +33,7 @@ class ScanQRScreen extends Component {
     }
 }
 
-ScanQRScreen.navigationOptions  = ({navigation}) => ({
+ScanQRScreen.navigationOptions  = ({ navigation }) => ({
     header: null
 });
 

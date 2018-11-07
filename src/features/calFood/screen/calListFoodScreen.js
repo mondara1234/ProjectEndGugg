@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { Container } from 'native-base';
-import CommonText from '../../common/components/CommonText';
-import HeaderLeftMenu from '../../common/components/HeaderLeftMenu';
+import CommonText from '_features/common/components/CommonText';
+import HeaderLeftMenu from '_features/common/components/HeaderLeftMenu';
 
 class CalListFoodScreen extends React.PureComponent {
 

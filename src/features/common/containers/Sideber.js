@@ -1,23 +1,23 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NavigationActions} from 'react-navigation';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { NavigationActions } from 'react-navigation';
 import { styles as s } from 'react-native-style-tachyons';
 import { Container, Content, Thumbnail, ListItem, Left, Body } from 'native-base';
 import { Alert, StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import themeVariables from '../../../../native-base-theme/variables/platform';
-import {DASHBOARD} from "../../common/router";
-import {PROFILE_LIST} from "../../User/router";
-import {SELECT_FOOD_SCREEN} from "../../selectFood/router";
-import {HISTORY_SCREEN} from "../../history/router";
-import {SCANQR_SCREEN} from "../../qrcodeScanner/router";
-import {CAL_FOOD_SCREEN} from "../../calFood/router";
-import {bindActionCreators} from "redux";
-import * as API from "../../User/api/api";
-import { APP_VERSION_TEXT } from '../../../common/constants';
-import {connect} from "react-redux";
-import CommonText from '../../common/components/CommonText';
+import themeVariables from '_theme';
+import { APP_VERSION_TEXT } from '_src/common/constants';
+import CommonText from '_features/common/components/CommonText';
+import { DASHBOARD } from "_features/common/router";
+import { PROFILE_LIST } from "_features/User/router";
+import { SELECT_FOOD_SCREEN } from "_features/selectFood/router";
+import { HISTORY_SCREEN } from "_features/history/router";
+import { SCANQR_SCREEN } from "_features/qrcodeScanner/router";
+import { CAL_FOOD_SCREEN } from "_features/calFood/router";
+import * as API from "_features/User/api/api";
 
 class Sideber extends React.Component {
     constructor(props) {
@@ -154,15 +154,6 @@ class Sideber extends React.Component {
                 </View>
             </Container>
         );
-                      {/*  <TouchableOpacity
-                            style={[styles.listItem,{backgroundColor: this.state.screebSideber === 'QRCODE' ? 'rgba(111, 165, 255, 0.5)' : null}]}
-                            onPress={() => {
-                                navigate('QRCODE_SCREEN');
-                            }}
-                        >
-                            <Icon style={styles.listItemIcon} name="qrcode" />
-                            <Text style={styles.styleNameicon}> {'QR Code'} </Text>
-                        </TouchableOpacity>*/}
     }
 }
 

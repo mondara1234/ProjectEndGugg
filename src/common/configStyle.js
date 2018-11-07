@@ -1,4 +1,4 @@
-import ThemeVariables from '../../native-base-theme/variables/platform';
+import ThemeVariables from '_theme';
 
 export default {
     rem: ThemeVariables.fontSizeBase,

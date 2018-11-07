@@ -2,10 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import I18n from 'react-native-i18n';
-import th from '../../../i18n/locales/th';
-import en from '../../../i18n/locales/en';
+import th from '_src/i18n/locales/th';
+import en from '_src/i18n/locales/en';
+import { DEFAULT_LOCALE } from '_src/common/constants';
 import CommonText from '../components/CommonText';
-import { DEFAULT_LOCALE } from '../../../../../ProjectEndGugg/src/common/constants';
 
 I18n.fallbacks = true;
 I18n.defaultLocale = DEFAULT_LOCALE;
