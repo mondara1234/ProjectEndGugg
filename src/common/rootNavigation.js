@@ -19,7 +19,7 @@ export const RootStack = StackNavigator({
     ...SelectFoodRouter,
     ...calFoodRouter
 },{
-    initialRouteName: HISTORY_SCREEN,
+    initialRouteName: SELECT_FOOD_SCREEN,
     navigationOptions: ({navigation}) => ({
         ...HEADER_STYLE
     }),

@@ -98,24 +98,26 @@ class DashboardScreen extends React.Component {
             >
                 <View style={styles.overlayContainer}>
                     <View style={styles.top}>
-                        <Text style={styles.header}> {"H O M E"} </Text>
+                        <Text style={styles.header}> {"Healthy Tracker"} </Text>
                     </View>
                     <View style={styles.containerDeckSwiper}>
-                        <Button iconLeft onPress={() => this._deckSwiper._root.swipeLeft()}>
+                        <Button
+                            style={{ marginTop: 100 }}
+                            onPress={() => this._deckSwiper._root.swipeLeft()}
+                        >
                             <Icon name="arrow-back" />
                         </Button>
                         <View style={styles.deckSwiperImg}>
                             <DeckSwiper
                                 ref={(c) => this._deckSwiper = c}
                                 dataSource={cards}
-                                renderEmpty={() =>
-                                    <View style={{ alignSelf: "center" }}>
-                                        <Text>Over</Text>
-                                    </View>}
                                 renderItem={(item) => this.renderItem(item)}
                             />
                         </View>
-                        <Button iconRight onPress={() => this._deckSwiper._root.swipeRight()}>
+                        <Button
+                            style={{ marginTop: 100 }}
+                            onPress={() => this._deckSwiper._root.swipeRight()}
+                        >
                             <Icon name="arrow-forward" />
                         </Button>
                     </View>

@@ -47,8 +47,8 @@ class Sideber extends React.Component {
             <ListItem
                 style={[
                     styles.listItem,
-                    s.ml0,
-                    {borderBottomWidth: item.name === 'logout' ? 0 : 1, backgroundColor: isActive ? '#2a9998' : '#fff'}
+                    s.m10,
+                    {backgroundColor: isActive ? '#2a9998' : '#fff'}
                 ]}
                 icon
                 onPress={() => {
@@ -60,15 +60,7 @@ class Sideber extends React.Component {
                             'ต้องการออกจากระบบ ?',
                             [
                                 {text: 'ตกลง', onPress: () => navigate({routeName: LOGIN})},
-                                {text: 'ยกเลิก'}
-                            ]
-                        )
-                    } else {
-                        navigate({
-                            routeName: `${item.route}`,
-                            params: item.params
-                        })
-                        /*this.props.NavigationActions.reset({
+                                /*this.props.NavigationActions.reset({
                             index: 0,
                             actions: [
                                 NavigationActions.navigate({
@@ -77,6 +69,14 @@ class Sideber extends React.Component {
                                 })
                             ]
                         }) //มาทำแบบนี้ให้ได้*/
+                                {text: 'ยกเลิก'}
+                            ]
+                        )
+                    } else {
+                        navigate({
+                            routeName: `${item.route}`,
+                            params: item.params
+                        })
                     }
                 }}
             >
@@ -91,24 +91,30 @@ class Sideber extends React.Component {
                     name={item.icon}
                 />}
                 </Left>
-                <Body style={s.b__transparent}>
+                <Body style={{borderBottomWidth: 0}}>
                     <CommonText text={`${item.name}.title`} style={[styles.fontBase, s.ml2, {color: fontColor}]} weight={isAndroid ? 'bold' : null} />
                 </Body>
             </ListItem>
         )
-    }
+    };
+
+    renderSeparator = () => {
+        return(
+            <View style = {{height: 1 , width: '100%', backgroundColor: '#232323'}} />
+        )
+    };
 
     render () {
         //const { first_name, last_name, employee_id, manager } = this.props.users;
         const profileImage = 'https://randomuser.me/api/portraits/thumb/men/97.jpg';
 
         const menus = [
-            {name: 'home', icon: 'home', route: DASHBOARD},
-            {name: 'scanQRcode', icon: 'camera', route: SCANQR_SCREEN},
-            {name: 'คำนวณ', icon: 'list', route: CAL_FOOD_SCREEN, params: {isRootPage: true}},
-            {name: 'ประวัติการใช้งาน', icon: 'history', route: HISTORY_SCREEN, params: {isRootPage: true}},
-            {name: 'ค้นหาอาหาร', icon: 'search', route: SELECT_FOOD_SCREEN},
-            {name: 'user_profile', icon: 'user-circle', route: PROFILE_LIST},
+            {name: 'หน้าหลัก', icon: 'home', route: DASHBOARD},
+            {name: 'กล้อง', icon: 'camera', route: SCANQR_SCREEN},
+            {name: 'นับการก้าวเท้า', icon: 'foot', route: PROFILE_LIST},
+            {name: 'ไดอารี่อาหาร', icon: 'book', route: HISTORY_SCREEN, params: {isRootPage: true}},
+            {name: 'รายการอาหาร', icon: 'food', route: SELECT_FOOD_SCREEN},
+            {name: 'BMI', icon: 'list', route: CAL_FOOD_SCREEN, params: {isRootPage: true}},
             {name: 'logout', icon: 'log-out', route: null}
         ];
 
@@ -139,11 +145,7 @@ class Sideber extends React.Component {
                         style={[styles.fontBase, s.b]}
                     />
                     <CommonText
-                        text={'last_name'}
-                        style={[styles.fontBase, styles.textLeftMinus]}
-                    />
-                    <CommonText
-                        text={`รหัสพนักงาน: ${'employee_id'}`}
+                        text={`หลังงานที่ต้องการต่อวัน:  ${'1999'}  kcal`}
                         style={[styles.fontBase, s.fw3, {fontSize: 16}]}
                     />
                 </TouchableOpacity>
@@ -152,12 +154,24 @@ class Sideber extends React.Component {
                         data={menus}
                         renderItem={this._renderItem}
                         keyExtractor={(item, index) => index.toString()}
+                        ItemSeparatorComponent={this.renderSeparator}
                     />
                 </Content>
-                <View style={styles.footer}>
-                    <CommonText text={'กั้ก จำกัด'} style={styles.footerFont} />
-                    <CommonText text={`version ${APP_VERSION_TEXT}`} style={[styles.footerFont, {marginTop: -5}]} />
-                </View>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.NavigationActions.reset({
+                            index: 0,
+                            actions: [
+                                NavigationActions.navigate({routeName: PROFILE_LIST})
+                            ]
+                        })
+                    }}
+                >
+                    <View style={styles.footer}>
+                        <CommonText text={'เกี่ยวกับเรา'} style={styles.footerFont} />
+                        <CommonText text={`version ${APP_VERSION_TEXT}`} style={styles.version} />
+                    </View>
+                </TouchableOpacity>
             </Container>
         );
     }
@@ -170,7 +184,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         backgroundColor: 'white',
         borderBottomWidth: 1,
-        borderBottomColor: '#e7e7e7',
+        borderBottomColor: '#000000',
     },
     managerView: {
         flexDirection: 'row',
@@ -191,15 +205,13 @@ const styles = StyleSheet.create({
     },
     listItem: {
         flexDirection: 'row',
-        paddingLeft: 30,
+        paddingLeft: 20,
         height: 50,
-        borderBottomWidth: 1,
-        borderBottomColor: '#e7e7e7',
         alignItems: 'center',
     },
     listItemIcon: {
         width: 30,
-        color: '#991b1f',
+        color: '#000000',
         fontSize: 24,
     },
     footer: {
@@ -210,7 +222,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     footerFont: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: '300',
     },
     userThumb: {
@@ -222,6 +234,13 @@ const styles = StyleSheet.create({
         color: '#991b1f',
         fontSize: 22,
         fontWeight: themeVariables.platform === 'ios' ? '600' : null
+    },
+    version: {
+        fontSize: 16,
+        fontWeight: '300',
+        position: 'absolute',
+        right: 4,
+        bottom: 2
     }
 });
 
